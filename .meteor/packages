@@ -21,3 +21,6 @@ accounts-ui
 accounts-password
 fortawesome:fontawesome
 twbs:bootstrap
+kadira:flow-router
+arillo:flow-router-helpers
+zimme:active-route
