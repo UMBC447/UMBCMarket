@@ -1,0 +1,15 @@
+<body>
+<div class="container">
+    <header>
+        <h1>Welcome to the UMBC Market!</h1>
+    </header>
+    {{> loginButtons}}
+
+    {{#if currentUser}}
+        <p>You are Logged In!</p>
+    {{else}}
+        <p>You are not logged in!</p>
+    {{/if}}
+
+</div>
+</body>
