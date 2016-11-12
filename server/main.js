@@ -4,6 +4,16 @@ import '../imports/api/messageChains.js';
 import '../imports/api/listings.js';
 import { Accounts } from 'meteor/accounts-base';
 
-Meteor.startup(() => {
-  // code to run on server at startup
-});
+    Meteor.startup(() => {
+        //override onCreateUser to include the fields we need
+        //TODO add avatar
+        Accounts.onCreateUser(function(options, user) {
+            user.messageChains = [];
+            user.listings = [];
+            user.averageRating = 0; //maybe unused
+            user.ratings = 0;   //maybe unused
+            if (options.profile)
+                user.profile = options.profile;
+            return user;
+        });
+    });
