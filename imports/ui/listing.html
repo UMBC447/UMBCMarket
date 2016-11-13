@@ -1,0 +1,25 @@
+<template name="listing">
+    <li>
+        {{#if isClosed}}
+            <p>The listing is Closed</p>
+        {{else}}
+            <p>The listing is Open</p>
+        {{/if}}
+
+        {{#if isOwner}}
+            <button class="toggle-closed">
+                {{#if isClosed}}
+                    Open Listing
+                {{else}}
+                    Close Listing
+                {{/if}}
+            </button>
+        {{/if}}
+
+        <p>Title - {{title}} </p> <br>
+        <p>Description - {{description}} </p> <br>
+        <p>Starting Offer - {{startingOffer}} </p> <br>
+        <p>Date - {{date}} </p> <br>
+
+    </li>
+</template>

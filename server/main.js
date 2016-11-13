@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/api/listings.js';
-import '../imports/api/messageChains.js';
 import '../imports/api/listings.js';
 import { Accounts } from 'meteor/accounts-base';
 
@@ -8,8 +7,6 @@ import { Accounts } from 'meteor/accounts-base';
         //override onCreateUser to include the fields we need
         //TODO add avatar
         Accounts.onCreateUser(function(options, user) {
-            user.messageChains = [];
-            user.listings = [];
             user.averageRating = 0; //maybe unused
             user.ratings = 0;   //maybe unused
             if (options.profile)

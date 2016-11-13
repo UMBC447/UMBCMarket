@@ -8,7 +8,12 @@ export const Listings = new Mongo.Collection('Listings');
 if (Meteor.isServer){
     //only return listings that are not closed
     Meteor.publish('listings', function listingPublication(){
-            return Listings.find();
+            return Listings.find({},{sort: {date: -1}});
+        }
+    );
+
+    Meteor.publish('listings-by-user', function listingPublication(userId){
+        return Listings.find({ownerId: userId},{sort: {date: -1}});
         }
     );
 }
@@ -21,34 +26,37 @@ Meteor.methods({
         check(description, String);
         check(startingOffer, Number);
 
+        console.log("Listing Submit Requested");
+
         //confirm user is logged in
         if (!this.userId){
             throw new Meteor.Error('not-authorized');
         }
-
-
+        
         //update listings table
         var listingId = Listings.insert({
             title: title,
             description: description,
             startingOffer: startingOffer,
-            createdAt: new Date(),
-            owner: this.userId,
+            date: new Date(),
+            ownerId: this.userId,
             closed: false,
             posterName: Meteor.users.findOne(this.userId).userName
         });
 
-        //update users listingsArray with listingId;
-        Meteor.users.update({_id: this.userId}, {$push: {listings: listingId}});
+        console.log("ID: " + listingId);
+
     },
     'listings.setClosed'(listingId, setClosed){
         check(listingId, String);
-        check(listingId, boolean);
+        check(setClosed, Boolean);
 
         const listing = Listings.findOne(listingId);
 
+        console.log(this.userId);
+        console.log(listing.ownerId);
         //this user dosen't own this listing, can't update
-        if (listing.owner !== this.userId){
+        if (listing.ownerId !== this.userId){
             throw new Meteor.Error('not-authorized');
         }
 
