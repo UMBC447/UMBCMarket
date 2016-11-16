@@ -1,0 +1,16 @@
+<template name="ApplicationLayout">
+    <div class="container">
+
+        <header>
+            <h1>Welcome to the UMBC Market!</h1>
+            {{> loginButtons}}
+        </header>
+
+        {{> yield}}
+
+        <hr>
+        <footer>
+            <p>Footer will go here, eventually</p>
+        </footer>
+    </div>
+</template>

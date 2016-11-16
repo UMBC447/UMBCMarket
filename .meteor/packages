@@ -23,4 +23,4 @@ fortawesome:fontawesome
 twbs:bootstrap
 arillo:flow-router-helpers
 zimme:active-route
-kadira:flow-router
+iron:router

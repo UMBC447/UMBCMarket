@@ -8,7 +8,14 @@ export const Listings = new Mongo.Collection('Listings');
 if (Meteor.isServer){
     //only return listings that are not closed
     Meteor.publish('listings', function listingPublication(){
-            return Listings.find({},{sort: {date: -1}});
+            var res = Listings.find({},{sort: {date: -1}});
+            console.log(res);
+            return res;
+        }
+    );
+
+    Meteor.publish('listing', function listingPublication(listingId){
+            return Listings.find({_id: listingId});
         }
     );
 

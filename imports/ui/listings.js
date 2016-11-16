@@ -1,30 +1,27 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { ReactiveDict } from 'meteor/reactive-dict';
 import { Listings } from '../api/listings.js';
 
-import './listing.html';
-import './body.html';
+import './listings.html';
+import './listings';
 
-
-Template.body.onCreated(function bodyOnCreated() {
-    this.state = new ReactiveDict();
-    Meteor.subscribe('listings');
-});
-
-Template.body.helpers({
+Template.listings.helpers({
     listings() {
         return Listings.find();
     }
 });
 
-Template.body.events({
+Template.listings.events({
+    'click .viewListing': function () {
+        Router.go('listing/:_id', {_id:this._id});
+    },
     'submit .new-listing'(event) {
         console.log("Attempted Listing Submit");
+
         // Prevent default browser form submit
         event.preventDefault();
 
-        // Get value from form element
+        // Get value from form elements
         const target = event.target;
         const title = target.title.value;
         const description = target.description.value;
