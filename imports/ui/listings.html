@@ -4,7 +4,7 @@
         <form class = "new-listing">
             <input type="text" name="title" placeholder="Add Title" />
             <input type="text" name="description" placeholder="Add Description" />
-            <input type="number" name="startingOffer" placeholder="Add Starting Offer" />
+            <input type="number" step=".01" min="0" name="startingOffer" placeholder="Add Starting Offer" />
             <input type="submit">
         </form>
     {{/if}}

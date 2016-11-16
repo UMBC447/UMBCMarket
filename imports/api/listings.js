@@ -9,7 +9,6 @@ if (Meteor.isServer){
     //only return listings that are not closed
     Meteor.publish('listings', function listingPublication(){
             var res = Listings.find({},{sort: {date: -1}});
-            console.log(res);
             return res;
         }
     );
@@ -33,8 +32,6 @@ Meteor.methods({
         check(description, String);
         check(startingOffer, Number);
 
-        console.log("Listing Submit Requested");
-
         //confirm user is logged in
         if (!this.userId){
             throw new Meteor.Error('not-authorized');
@@ -48,7 +45,7 @@ Meteor.methods({
             date: new Date(),
             ownerId: this.userId,
             closed: false,
-            posterName: Meteor.users.findOne(this.userId).userName
+            posterName: Meteor.users.findOne(this.userId).username
         });
 
         console.log("ID: " + listingId);
@@ -60,8 +57,6 @@ Meteor.methods({
 
         const listing = Listings.findOne(listingId);
 
-        console.log(this.userId);
-        console.log(listing.ownerId);
         //this user dosen't own this listing, can't update
         if (listing.ownerId !== this.userId){
             throw new Meteor.Error('not-authorized');

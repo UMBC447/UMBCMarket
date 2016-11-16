@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
+import { Listings } from './listings.js';
 
 export const Messages = new Mongo.Collection('Messages');
 
@@ -50,6 +51,9 @@ Meteor.methods({
 
         var id = Messages.insert({
             receiverId,
+            senderName: Meteor.users.findOne(this.userId).username,
+            recieverName: Meteor.users.findOne(receiverId).username,
+            listingName: Listings.findOne(listingId).title,
             senderId: this.userId,
             body,
             listingId,
