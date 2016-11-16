@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
-import '../imports/api/listings.js';
 import { Accounts } from 'meteor/accounts-base';
+import '../imports/api/profiles.js';
+import '../imports/api/listings.js';
+
 
 Meteor.startup(() => {
     //override onCreateUser to include the fields we need

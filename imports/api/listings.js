@@ -18,10 +18,12 @@ if (Meteor.isServer){
         }
     );
 
-    Meteor.publish('listings-by-user', function listingPublication(userId){
+    Meteor.publish('listingsByUser', function listingPublication(userId){
         return Listings.find({ownerId: userId},{sort: {date: -1}});
         }
     );
+
+
 }
 
 //TODO: Add image support
