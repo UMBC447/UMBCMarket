@@ -45,10 +45,10 @@ Meteor.methods({
         check(body, String);
         check(listingId, String);
 
-
         //confirm user is logged in
         if (!this.userId){
-            throw new Meteor.Error('not-authorized');
+            throw new Meteor.Error("logged-out",
+                "The user must be logged in to send a message");
         }
 
         var id = Messages.insert({
