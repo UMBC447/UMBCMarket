@@ -24,9 +24,11 @@
         <p>Starting Offer - ${{startingOffer}} </p> <br>
         <p>Date - {{date}} </p> <br>
         <button class = "viewProfile btn btn-sm btn-default">View Users Profile</button>
-        {{#if isOwner}}
-
-        {{else}}
-            <button class = "sendMessage btn btn-sm btn-default">Send Message</button>
+        {{#if currentUser}}
+            {{#if isOwner}}
+            {{else}}
+                <button class = "sendMessage btn btn-sm btn-default">Send Message</button>
+            {{/if}}
         {{/if}}
+
 </template>

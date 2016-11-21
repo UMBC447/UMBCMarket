@@ -40,10 +40,24 @@ if (Meteor.isServer){
 }
 
 Meteor.methods({
-    'messages.insert'(receiverId, listingId, message_text){
+    'messages.insert'(receiverId, receiverName, listingId, message_text){
         check(receiverId, String);
+        check(receiverName, String);
         check(listingId, String);
         check(message_text, String);
+
+        var senderName = Meteor.users.findOne({_id: this.userId}).username;
+        console.log(senderName);
+        console.log(receiverName);
+
+        if (Meteor.isServer) {
+            //if the client gave us bad data for the recievers name
+            if (Meteor.users.findOne({_id: receiverId}).username != receiverName)
+            {
+                throw new Meteor.Error("validation-error",
+                    "You're sending a message to a user that dosen't exist");
+            }
+        }
 
         //confirm user is logged in
         if (!this.userId){
@@ -51,15 +65,23 @@ Meteor.methods({
                 "The user must be logged in to send a message");
         }
 
+        if (this.userId == receiverId){
+            throw new Meteor.Error("validation-error",
+                "You can't send a message to yourself");
+        }
+
         var id = Messages.insert({
             receiverId,
-            senderName: Meteor.users.findOne(this.userId).username,
-            recieverName: Meteor.users.findOne(receiverId).username,
+            senderName,
+            receiverName,
             listingName: Listings.findOne(listingId).title,
             senderId: this.userId,
             message_text,
             listingId,
             date: new Date()
         });
+        console.log(id);
+
+        console.log(Messages.findOne({_id: id}));
     }
 });

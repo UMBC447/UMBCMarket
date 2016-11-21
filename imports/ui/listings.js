@@ -32,12 +32,14 @@ Template.listings.events({
                 // show a nice error message
                 Session.set("errorMessage", "Please log in to post a listing.");
             }
+            else
+            {
+                // Clear form
+                target.title.value = '';
+                target.description.value = '';
+                target.startingOffer.value = '';
+            }
         });
-
-        // Clear form
-        target.title.value = '';
-        target.description.value = '';
-        target.startingOffer.value = '';
-
+        
     }
 });
