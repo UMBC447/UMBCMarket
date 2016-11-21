@@ -5,8 +5,9 @@ import '../api/profiles.js';
 import '../ui/listing.js';
 import '../ui/listings.js';
 import '../ui/profile.js';
-
+import '../ui/message.js';
 import '../ui/ApplicationLayout.html';
+
 
 Router.configure({
     layoutTemplate: 'ApplicationLayout'
@@ -52,4 +53,15 @@ Router.route('profile/:_id', {
         return Meteor.users.findOne({_id: this.params._id});
     },
     template: 'profile'
+});
+
+Router.route('new_message/:_id', {
+    path: 'new_message/:_id',
+    waitOn: function () {
+        return Meteor.subscribe('listing', this.params._id);
+    },
+    data: function() {
+        return Listings.findOne({_id: this.params._id});
+    },
+    template: 'message'
 });

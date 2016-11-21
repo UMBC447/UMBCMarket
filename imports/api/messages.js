@@ -40,10 +40,10 @@ if (Meteor.isServer){
 }
 
 Meteor.methods({
-    'messages.insert'(receiverId, listingId, body){
+    'messages.insert'(receiverId, listingId, message_text){
         check(receiverId, String);
-        check(body, String);
         check(listingId, String);
+        check(message_text, String);
 
         //confirm user is logged in
         if (!this.userId){
@@ -57,7 +57,7 @@ Meteor.methods({
             recieverName: Meteor.users.findOne(receiverId).username,
             listingName: Listings.findOne(listingId).title,
             senderId: this.userId,
-            body,
+            message_text,
             listingId,
             date: new Date()
         });
