@@ -26,7 +26,9 @@
 <template name="header">
 
     <h1>Welcome to the UMBC Market!</h1>
-    <button class = "viewMessages btn btn-sm btn-default">Messages</button>
+    {{#if currentUser}}
+        <button class = "viewMessages btn btn-sm btn-default">Messages</button>
+    {{/if}}
     {{> loginButtons}}
 
 
