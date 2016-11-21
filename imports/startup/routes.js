@@ -8,7 +8,6 @@ import '../ui/profile.js';
 import '../ui/message.js';
 import '../ui/ApplicationLayout.html';
 
-
 Router.configure({
     layoutTemplate: 'ApplicationLayout'
 });
@@ -64,4 +63,10 @@ Router.route('new_message/:_id', {
         return Listings.findOne({_id: this.params._id});
     },
     template: 'message'
+});
+
+Router.route('messages/', {
+    path: 'messages/',
+
+    template: 'messages'
 });

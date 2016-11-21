@@ -10,6 +10,7 @@ Template.message.helpers({
 });
 
 Template.message.events({
+
     'submit .new-message' (event){
 
         // Prevent default browser form submit
@@ -34,6 +35,6 @@ Template.message.events({
                 const message_text = target.message_text.value = " ";
             }
         });
-
-    }
+        Router.go('listing/:_id', {_id: listingId});
+    },
 });

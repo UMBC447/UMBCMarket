@@ -4,8 +4,7 @@
 
         <row>
             <header>
-                <h1>Welcome to the UMBC Market!</h1>
-                {{> loginButtons}}
+                {{> header }}
             </header>
         </row>
 
@@ -22,4 +21,13 @@
                 </footer>
             </row>
     </div>
+</template>
+
+<template name="header">
+
+    <h1>Welcome to the UMBC Market!</h1>
+    <button class = "viewMessages btn btn-sm btn-default">Messages</button>
+    {{> loginButtons}}
+
+
 </template>
