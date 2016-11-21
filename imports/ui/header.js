@@ -5,11 +5,11 @@ import { Messages } from '../api/messages.js';
 
 import './ApplicationLayout.html';
 
-Template.message.helpers({
+Template.header.helpers({
 
 });
 
-Template.listing.events({
+Template.header.events({
 
     'click .viewMessages': function () {
         Router.go('messages/');

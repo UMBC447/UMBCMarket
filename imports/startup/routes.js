@@ -6,6 +6,8 @@ import '../ui/listing.js';
 import '../ui/listings.js';
 import '../ui/profile.js';
 import '../ui/message.js';
+import '../ui/messages.js';
+import '../ui/header.js';
 import '../ui/ApplicationLayout.html';
 
 Router.configure({

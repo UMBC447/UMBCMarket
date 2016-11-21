@@ -3,9 +3,9 @@ import { Template } from 'meteor/templating';
 
 import './messages.html';
 
-Template.listing.helpers({
+Template.messages.helpers({
 });
 
-Template.listing.events({
+Template.messages.events({
 
 });
