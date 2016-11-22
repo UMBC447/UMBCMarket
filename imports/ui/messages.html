@@ -1,13 +1,10 @@
 <template name="messages">
 
     <ul>
-        {{#each messages}}
+        {{#each conversations}}
             <li>
                 Listing: {{listingName}} <br>
-                Sender: {{senderName}} <br>
-                Recipient: {{receiverName}} <br>
-                Message: {{message_text}} <br>
-                Date: {{date}} <br>
+                Participants: {{senderName}}, {{receiverName}} <br>
                 <button class = "conversation btn btn-sm btn-default">View Conversation</button>
             </li>
         {{/each}}

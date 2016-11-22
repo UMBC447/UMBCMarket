@@ -1,0 +1,9 @@
+<template name="conversation">
+    <ul>
+        {{#each messages}}
+            <li>
+                {{senderName}}: {{message_text}}
+            </li>
+        {{/each}}
+    </ul>
+</template>

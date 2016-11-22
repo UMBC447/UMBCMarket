@@ -9,6 +9,7 @@ import '../ui/profile.js';
 import '../ui/message.js';
 import '../ui/messages.js';
 import '../ui/header.js';
+import '../ui/conversation.js';
 import '../ui/ApplicationLayout.html';
 
 Router.configure({
@@ -71,8 +72,17 @@ Router.route('new_message/:_id', {
 Router.route('messages/:_id', {
     path: 'messages/:_id',
     waitOn: function () {
-        return Meteor.subscribe('messages', this.params._id);
+        return Meteor.subscribe('conversations', this.params._id);
     },
 
     template: 'messages'
+});
+
+Router.route('conversation/:_id', {
+    path: 'conversation/:_id',
+    waitOn: function () {
+        return Meteor.subscribe('messages_');
+    },
+
+    template: 'conversation'
 });

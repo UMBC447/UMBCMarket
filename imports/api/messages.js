@@ -8,7 +8,24 @@ export const Messages = new Mongo.Collection('Messages');
 //publish to client
 if (Meteor.isServer){
     //only return messageChains that involve this user
-
+    Meteor.publish('messages_', function messagePublication() {
+        return Messages.find({
+            /*
+            $and: [
+                {$or: [
+                    {receiverId: participant1},
+                    {senderId: participant1}
+                ]},
+                {$or: [
+                    {receiverId: participant2},
+                    {senderId: participant2}
+                ]},
+                {listingId: listingId}
+            ]
+            */
+            }
+        );
+    });
     Meteor.publish('messages', function messagePublication(){
             return Messages.find({
                 $or: [
