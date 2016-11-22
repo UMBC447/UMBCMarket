@@ -1,16 +1,40 @@
 <template name="ApplicationLayout">
     <div class="container">
-
         <header>
-            <h1>Welcome to the UMBC Market!</h1>
+            <div class="row">
+				<div id="custom-search-input">
+					<div class="input-group col-md-12">
+						<input type="text" class="form-control input-lg" placeholder="Search" />
+						<span class="input-group-btn">
+							<button class="btn btn-info btn-lg" type="button">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
             {{> loginButtons}}
         </header>
 
         {{> yield}}
 
-        <hr>
+        
         <footer>
-            <p>Footer will go here, eventually</p>
+			<div class="row">
+				<div class="col-md-2">
+					<button type="button" class="btn btn-link">About UMBC</button></div>
+				<div class="col-md-2">
+					<button type="button" class="btn btn-link">Contact Us</button></div>
+				<div class="col-md-2">
+					<button type="button" class="btn btn-link">Feedback</button></div>
+				<div class="col-md-2">
+					<button type="button" class="btn btn-link">Conditions of Use</button></div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					© University of Maryland, Baltimore County  • 1000 Hilltop Circle • Baltimore, MD 21250
+				</div>
+			</div>
         </footer>
     </div>
 </template>
