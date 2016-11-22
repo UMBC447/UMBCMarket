@@ -1,13 +1,11 @@
-<template name = "listings">
+<template name="listings" xmlns="http://www.w3.org/1999/html">
 
-    {{#if currentUser}}
         <form class = "new-listing">
-            <input type="text" name="title" placeholder="Add Title" />
-            <input type="text" name="description" placeholder="Add Description" />
-            <input type="number" step=".01" min="0" name="startingOffer" placeholder="Add Starting Offer" />
-            <input type="submit">
+            <input type ="text" class = "form-control" name="title" placeholder="Add Title">
+            <textarea class="form-control" cols="40" rows="5" name="description" placeholder="Add Description" ></textarea>
+            <input type="number" class="form-control" step=".01" min="0" name="startingOffer" placeholder="Add Starting Offer" />
+            <input class="btn btn-sm btn-default" type="submit">
         </form>
-    {{/if}}
 
     <ul>
         {{#each listings}}
@@ -16,7 +14,7 @@
                 Author: {{posterName}} <br>
                 Description: {{description}} <br>
                 Date: {{date}} <br>
-                <button class = "viewListing">View Listing</button>
+                <button class = "viewListing btn btn-sm btn-default">View Listing</button>
             </li>
         {{/each}}
     </ul>

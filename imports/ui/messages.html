@@ -1,0 +1,14 @@
+<template name="messages">
+
+    <ul>
+        {{#each messages}}
+            <li>
+                Listing: {{listingName}} <br>
+                Sender: {{senderName}} <br>
+                Recipient: {{receiverName}} <br>
+                Message: {{message_text}} <br>
+                Date: {{date}} <br>
+            </li>
+        {{/each}}
+    </ul>
+</template>

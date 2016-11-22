@@ -27,12 +27,19 @@ Template.listings.events({
         const startingOffer = Number(target.startingOffer.value);
 
         // Insert a task into the collection
-        Meteor.call('listings.insert', title, description, startingOffer);
-
-        // Clear form
-        target.title.value = '';
-        target.description.value = '';
-        target.startingOffer.value = '';
-
+        Meteor.call('listings.insert', title, description, startingOffer, function(error){
+            if (error && error.error === "logged-out") {
+                // show a nice error message
+                Session.set("errorMessage", "Please log in to post a listing.");
+            }
+            else
+            {
+                // Clear form
+                target.title.value = '';
+                target.description.value = '';
+                target.startingOffer.value = '';
+            }
+        });
+        
     }
 });

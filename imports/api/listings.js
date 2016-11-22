@@ -22,8 +22,6 @@ if (Meteor.isServer){
         return Listings.find({ownerId: userId},{sort: {date: -1}});
         }
     );
-
-
 }
 
 //TODO: Add image support
@@ -36,8 +34,12 @@ Meteor.methods({
 
         //confirm user is logged in
         if (!this.userId){
-            throw new Meteor.Error('not-authorized');
+                //confirm user is logged in
+                throw new Meteor.Error("logged-out",
+                    "The user must be logged in to post a listing");
+                
         }
+
         
         //update listings table
         var listingId = Listings.insert({
@@ -50,8 +52,6 @@ Meteor.methods({
             posterName: Meteor.users.findOne(this.userId).username
         });
 
-        console.log("ID: " + listingId);
-
     },
     'listings.setClosed'(listingId, setClosed){
         check(listingId, String);
@@ -61,7 +61,11 @@ Meteor.methods({
 
         //this user dosen't own this listing, can't update
         if (listing.ownerId !== this.userId){
-            throw new Meteor.Error('not-authorized');
+            //confirm user is logged in
+            if (!this.userId){
+                throw new Meteor.Error("not-authorized",
+                    "You must be the owner of this listing to update it");
+            }
         }
 
         Listings.update(listingId, {$set: {closed: setClosed}});

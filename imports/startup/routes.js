@@ -1,11 +1,14 @@
 import { Router } from 'meteor/iron:router'
 import { Meteor } from 'meteor/meteor';
 import { Listings } from '../api/listings.js';
+import { Messages } from '../api/messages.js';
 import '../api/profiles.js';
 import '../ui/listing.js';
 import '../ui/listings.js';
 import '../ui/profile.js';
-
+import '../ui/message.js';
+import '../ui/messages.js';
+import '../ui/header.js';
 import '../ui/ApplicationLayout.html';
 
 Router.configure({
@@ -52,4 +55,26 @@ Router.route('profile/:_id', {
         return Meteor.users.findOne({_id: this.params._id});
     },
     template: 'profile'
+});
+
+Router.route('new_message/:_id', {
+    path: 'new_message/:_id',
+    waitOn: function () {
+        return Meteor.subscribe('listing', this.params._id);
+    },
+    data: function() {
+        return Listings.findOne({_id: this.params._id});
+    },
+    template: 'message'
+});
+
+Router.route('messages/', {
+    path: 'messages/',
+    waitOn: function () {
+        return Meteor.subscribe('all_messages');
+    },
+    data: function() {
+        return Messages.find();
+    },
+    template: 'messages'
 });

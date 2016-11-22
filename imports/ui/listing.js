@@ -20,4 +20,8 @@ Template.listing.events({
     'click .viewProfile': function () {
         Router.go('profile/:_id', {_id:this.ownerId});
     },
+    'click .sendMessage': function () {
+        Router.go('new_message/:_id', {_id:this._id});
+    },
+
 });
