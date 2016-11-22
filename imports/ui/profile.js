@@ -12,7 +12,7 @@ Template.profile.helpers({
         return this.emails[0].address;
     },
     getAverageRating() {
-        if (this.ratings == 0){
+        if (!this.num_ratings){
             return "Not Yet Rated"
         }
         else {

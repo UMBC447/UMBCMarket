@@ -27,12 +27,15 @@ Template.message.events({
         console.log(receiverName);
         // Insert a message into the collection
         Meteor.call('messages.insert', receiverId, receiverName, listingId, message_text, function(error){
-            if (error && error.error === "logged-out") {
+            if (error) {
+		if(error.error === "logged-out")
                 // show a nice error message
-                Session.set("errorMessage", "Please log in to send a message.");
-            }
+                	Session.set("errorMessage", "Please log in to send a message.");
+            	else
+			Session.set("errorMessage","Unknown error");
+	    }
             else {
-                const message_text = target.message_text.value = " ";
+                target.message_text.value = " ";
             }
         });
         Router.go('listing/:_id', {_id: listingId});
