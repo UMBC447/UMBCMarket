@@ -10,6 +10,7 @@ if (Meteor.isServer){
     //only return messageChains that involve this user
     Meteor.publish('messages_', function messagePublication() {
         return Messages.find({
+            //Logic for returning only the messages between 2 users about 1 listing
             /*
             $and: [
                 {$or: [
