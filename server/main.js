@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import '../imports/api/profiles.js';
 import '../imports/api/listings.js';
+import '../imports/api/messages.js';
 
 
 Meteor.startup(() => {

@@ -68,13 +68,11 @@ Router.route('new_message/:_id', {
     template: 'message'
 });
 
-Router.route('messages/', {
-    path: 'messages/',
+Router.route('messages/:_id', {
+    path: 'messages/:_id',
     waitOn: function () {
-        return Meteor.subscribe('all_messages');
+        return Meteor.subscribe('messages', this.params._id);
     },
-    data: function() {
-        return Messages.find();
-    },
+
     template: 'messages'
 });
