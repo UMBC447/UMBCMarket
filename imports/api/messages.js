@@ -8,15 +8,11 @@ export const Messages = new Mongo.Collection('Messages');
 //publish to client
 if (Meteor.isServer){
     //only return messageChains that involve this user
-    Meteor.publish('all_messages', function messagePublication(){
-            return Messages.find()
-        }
-    );
 
     Meteor.publish('messages', function messagePublication(){
             return Messages.find({
                 $or: [
-                    {recipientId: this.userId},
+                    {receiverId: this.userId},
                     {senderId: this.userId}
                 ]
             },
@@ -29,7 +25,7 @@ if (Meteor.isServer){
     Meteor.publish('messages-by-product', function messagePublication(listingId){
             return Messages.find({
                     $or: [
-                        {recipientId: this.userId},
+                        {receiverId: this.userId},
                         {senderId: this.userId}
                     ],
                     $and: [
