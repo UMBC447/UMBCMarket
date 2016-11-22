@@ -1,6 +1,7 @@
 import { Router } from 'meteor/iron:router'
 import { Meteor } from 'meteor/meteor';
 import { Listings } from '../api/listings.js';
+import { Messages } from '../api/messages.js';
 import '../api/profiles.js';
 import '../ui/listing.js';
 import '../ui/listings.js';
@@ -69,6 +70,11 @@ Router.route('new_message/:_id', {
 
 Router.route('messages/', {
     path: 'messages/',
-
+    waitOn: function () {
+        return Meteor.subscribe('all_messages');
+    },
+    data: function() {
+        return Messages.find();
+    },
     template: 'messages'
 });
