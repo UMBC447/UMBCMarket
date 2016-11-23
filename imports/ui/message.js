@@ -24,8 +24,6 @@ Template.message.events({
         const receiverId = this.ownerId;
         const listingId = this._id;
         const receiverName = this.posterName;
-        console.log(receiverId + " " + listingId + " " + message_text);
-        console.log(receiverName);
         // Insert a message into the collection
         Meteor.call('messages.insert', receiverId, receiverName, listingId, message_text, function(error){
             if (error) {

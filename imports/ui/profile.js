@@ -4,15 +4,14 @@ import { Template } from 'meteor/templating';
 import './profile.html';
 
 Template.profile.helpers({
-    getThis() {
-        console.log(this);
-        return 1;
-    },
     getEmail() {
         return this.emails[0].address;
     },
+    getRatings(){
+        return this.ratings ? this.ratings : 0;
+    },
     getAverageRating() {
-        if (!this.num_ratings){
+        if (!this.ratings){
             return "Not Yet Rated"
         }
         else {

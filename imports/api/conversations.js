@@ -10,13 +10,14 @@ if (Meteor.isServer) {
     //only return messageChains that involve this user
 
     Meteor.publish('conversations', function conversationPublication() {
-            return Conversations.find({
+            var toReturn = Conversations.find({
                     $or: [
                         {receiverId: this.userId},
                         {senderId: this.userId}
                     ]
                 },
             );
+            return toReturn;
         }
     );
 }
@@ -31,13 +32,11 @@ Meteor.methods({
             "senderId": this.userId,
             "listingId": listingId
         }).count();
-        console.log(count);
 
         if (!(count > 0)){
 
             var senderName = Meteor.users.findOne({_id: this.userId}).username;
-
-
+            
             if (Meteor.isServer) {
                 //if the client gave us bad data for the recievers name
                 if (Meteor.users.findOne({_id: receiverId}).username != receiverName) {

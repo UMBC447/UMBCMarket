@@ -12,7 +12,7 @@ Template.header.helpers({
 Template.header.events({
 
     'click .viewMessages': function () {
-        Router.go('messages/:_id', {_id: Meteor.userId});
+        Router.go('messages');
     },
     'click .viewProfile': function () {
         Router.go('profile/:_id', {_id: Meteor.userId});

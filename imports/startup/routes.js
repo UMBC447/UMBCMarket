@@ -2,6 +2,8 @@ import { Router } from 'meteor/iron:router'
 import { Meteor } from 'meteor/meteor';
 import { Listings } from '../api/listings.js';
 import { Messages } from '../api/messages.js';
+import { Conversations } from '../api/conversations.js';
+
 import '../api/profiles.js';
 import '../ui/listing.js';
 import '../ui/listings.js';
@@ -21,6 +23,12 @@ Router.route('home', {
     waitOn: function () {
         return Meteor.subscribe('listings');
     },
+    data: function() {
+        return {
+            listings: Listings.find(),
+            atMainMenu: true
+        }
+    },
     template: 'listings'
 });
 
@@ -30,7 +38,10 @@ Router.route('listings/:_userId', {
         return Meteor.subscribe('listingsByUser', this.params._userId);
     },
     data: function() {
-        return Listings.find({ownerId: this.params._userId});
+        return {
+            listings: Listings.find({ownerId: this.params._userId}),
+            atMainMenu: false
+        }
     },
     template: 'listings'
 });
@@ -69,10 +80,10 @@ Router.route('new_message/:_id', {
     template: 'message'
 });
 
-Router.route('messages/:_id', {
-    path: 'messages/:_id',
+Router.route('messages', {
+    path: 'messages',
     waitOn: function () {
-        return Meteor.subscribe('conversations', this.params._id);
+        return Meteor.subscribe('conversations');
     },
 
     template: 'messages'
@@ -81,8 +92,16 @@ Router.route('messages/:_id', {
 Router.route('conversation/:_id', {
     path: 'conversation/:_id',
     waitOn: function () {
-        return Meteor.subscribe('messages_');
+        return [
+            Meteor.subscribe('messages'),
+            Meteor.subscribe('conversations', this.params._id)
+            ]
     },
-
+    data: function(){
+        return {
+            conversation: Conversations.findOne({_id: this.params._id}),
+            messages: Messages.find()
+        }
+    },
     template: 'conversation'
 });

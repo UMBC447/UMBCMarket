@@ -8,22 +8,22 @@ export const Messages = new Mongo.Collection('Messages');
 //publish to client
 if (Meteor.isServer){
     //only return messageChains that involve this user
-    Meteor.publish('messages_', function messagePublication() {
+    Meteor.publish('messagesByConversation', function messagePublication(participant1, participant2, listing) {
         return Messages.find({
-            //Logic for returning only the messages between 2 users about 1 listing
-            /*
-            $and: [
-                {$or: [
-                    {receiverId: participant1},
-                    {senderId: participant1}
-                ]},
-                {$or: [
-                    {receiverId: participant2},
-                    {senderId: participant2}
-                ]},
-                {listingId: listingId}
-            ]
-            */
+                 $and: [
+                    {$or: [
+                        {receiverId: participant1},
+                        {senderId: participant1}
+                     ]},
+                    {$or: [
+                        {receiverId: participant2},
+                        {senderId: participant2}
+                     ]},
+                     {listingId: listingId}
+                 ]
+            },
+            {
+                sort: {date: -1}
             }
         );
     });
@@ -50,7 +50,7 @@ if (Meteor.isServer){
                         {listingId: listingId}
                     ]
                 },
-                    {sort: {date: -1}}
+                    {sort: {date: 1}}
             );
         }
     );
@@ -66,17 +66,15 @@ Meteor.methods({
         check(message_text, String);
 
         var senderName = Meteor.users.findOne({_id: this.userId}).username;
-        console.log(senderName);
-        console.log(receiverName);
 
-        if (Meteor.isServer) {
-            //if the client gave us bad data for the recievers name
-            if (Meteor.users.findOne({_id: receiverId}).username != receiverName)
-            {
-                throw new Meteor.Error("validation-error",
-                    "You're sending a message to a user that dosen't exist");
-            }
-        }
+        // if (Meteor.isServer) {
+        //     //if the client gave us bad data for the recievers name
+        //     if (Meteor.users.findOne({_id: receiverId}).username != receiverName)
+        //     {
+        //         throw new Meteor.Error("validation-error",
+        //             "You're sending a message to a user that dosen't exist");
+        //     }
+        // }
 
         //confirm user is logged in
         if (!this.userId){
@@ -93,14 +91,10 @@ Meteor.methods({
             receiverId,
             senderName,
             receiverName,
-            listingName: Listings.findOne(listingId).title,
             senderId: this.userId,
             message_text,
             listingId,
             date: new Date()
         });
-        console.log(id);
-
-        console.log(Messages.findOne({_id: id}));
     }
 });
