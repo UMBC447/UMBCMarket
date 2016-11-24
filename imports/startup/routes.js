@@ -41,7 +41,13 @@ Router.route('search_results/:_search_key', {
 
     data: function() {
         return {
-            listings: Listings.find({title: {$regex: this.params._search_key, $options: 'i'}}),
+            listings: Listings.find({
+                    $or: [
+                        {title: {$regex: this.params._search_key, $options: 'i'}},
+                        {description: {$regex: this.params._search_key, $options: 'i'}}
+                    ]},
+                {sort: {date: -1}
+                }),
             atMainMenu: false
         }
     },

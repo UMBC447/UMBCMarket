@@ -24,7 +24,13 @@ if (Meteor.isServer){
     );
 
     Meteor.publish('listingsSearch', function listingPublication(search_key){
-            return Listings.find({title: {$regex: search_key, $options: 'i'}},{sort: {date: -1}});
+            return Listings.find({
+                $or: [
+                    {title: {$regex: search_key, $options: 'i'}},
+                    {description: {$regex: search_key, $options: 'i'}}
+                ]},
+                {sort: {date: -1}
+                });
         }
     );
 }
