@@ -22,6 +22,11 @@ if (Meteor.isServer){
         return Listings.find({ownerId: userId},{sort: {date: -1}});
         }
     );
+
+    Meteor.publish('listingsSearch', function listingPublication(search_key){
+            return Listings.find({title: {$regex: search_key, $options: 'i'}},{sort: {date: -1}});
+        }
+    );
 }
 
 //TODO: Add image support

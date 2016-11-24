@@ -32,6 +32,23 @@ Router.route('home', {
     template: 'listings'
 });
 
+Router.route('search_results/:_search_key', {
+    path: 'search_results/:_search_key',
+
+    waitOn: function () {
+        return Meteor.subscribe('listings', this.params._search_key);
+    },
+
+    data: function() {
+        return {
+            listings: Listings.find({title: {$regex: this.params._search_key, $options: 'i'}}),
+            atMainMenu: false
+        }
+    },
+    template: 'listings'
+});
+
+
 Router.route('listings/:_userId', {
     path: 'listings/:_userId',
     waitOn: function () {
