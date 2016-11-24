@@ -11,6 +11,9 @@ Template.header.helpers({
 
 Template.header.events({
 
+    'click .home': function () {
+        Router.go('home');
+    },
     'click .viewMessages': function () {
         Router.go('messages');
     },
