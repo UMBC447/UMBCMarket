@@ -34,38 +34,33 @@
 	<div class="row">
 		<div id="custom-search-input">
 			<div class="col-md-3">
-				<p class="text-center"><img src="/images/logo.PNG" style="max-width:100%;max-height:100%;"></p>
+                <button type="button" class="home btn btn-link"><img src="/images/logo.PNG" style="max-width:100%;max-height:100%;"></button>
 			</div>
-			<div class="input-group col-md-6">
-				<input type="text" class="form-control input-lg" placeholder="Search"/>
-				<span class="input-group-btn">
-					<button class="btn btn-info btn-lg" type="button" style="background: #FFC20E;border:none;">
-						<i class="glyphicon glyphicon-search"></i>
-					</button>
-				</span>
-			</div>
-			<div class="col-md-3">
-				<p class="text-center"><img src="/images/logo.PNG" style="max-width:100%;max-height:100%;"></p>
-			</div>
-			<div class="col-md-1">
-				<p class="text-right">
-				{{#if currentUser}}
-				<button class = "viewMessages btn btn-sm btn-default" style="background:black;border:none;">
-					<span class="glyphicon glyphicon-envelope" style="color:gold"></span>
-				</button>
-				<button class = "viewProfile btn btn-sm btn-default">My Profile</button>
-				{{/if}}
-				
-				</p>
+			<div class="col-md-6">
+                <form class = "search_">
+                    <div class = "input-group row">
+                        <input type="text" class="form-control input-lg" name="search_term" placeholder="Search" />
+				        <span class="input-group-btn">
+					        <button class="btn btn-info btn-lg" type="submit">
+						        <i class="glyphicon glyphicon-search"></i>
+					        </button>
+				        </span>
+                    </div>
+                </form>
 
+                    <br>
 
-					
-			</div>
+                <div class = "row">
+                    {{#if currentUser}}
+                            <button class = "viewMessages btn btn-sm btn-default">Messages</button>
+                            <button class = "viewProfile btn btn-sm btn-default">My Profile</button>
+                    {{/if}}
+                </div>
 			{{> loginButtons}}
+			</div>
 		</div>
 	</div>
-    
-    
+
 
 
 </template>

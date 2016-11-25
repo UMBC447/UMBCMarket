@@ -1,0 +1,18 @@
+<template name="conversation">
+
+    <ul>
+        {{#each messages}}
+            <li>
+                <b>{{senderName}}:</b> {{message_text}} <br>
+                {{date}}
+            </li>
+        {{/each}}
+
+    </ul>
+
+    <form class = "new-message">
+        <textarea class="form-control" cols="40" rows="5" name="message_text" placeholder="Message" ></textarea>
+        <input class="btn btn-sm btn-default" type="submit">
+    </form>
+
+</template>
