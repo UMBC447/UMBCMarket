@@ -48,13 +48,25 @@
                     </div>
                     <div class="panel-body">
                         <div class = "row">
-                            <b>Author:</b> {{posterName}}
+                           <div class="col-md-12">
+                            <b>Author:</b><button type="button" class="btn btn-link viewProfile" style="color:blue; font-weight: bold;">{{posterName}}</button>
+							{{#if currentUser}}
+								{{#if isOwner}}
+								{{else}}
+									<button class = "sendMessage btn btn-link">[msg]</button>
+								{{/if}}
+							{{/if}}
+							</div>
                         </div>
                         <div class = "row">
-                            <b>Description:</b> {{description}}
+							<div class="col-md-12">
+								<b>Description:</b> {{description}}
+							</div>
                         </div>
                         <div class = "row">
-                            <b>Date:</b> {{date}} <br>
+							<div class="col-md-12">
+								<b>Date:</b> {{date}} <br>
+							</div>
                         </div>
                     </div>
                 </div>
