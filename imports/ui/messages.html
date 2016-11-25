@@ -1,12 +1,16 @@
 <template name="messages">
 
     <ul>
-        {{#each conversations}}
-            <li>
-                Listing: {{listingName}} <br>
-                Participants: {{senderName}}, {{receiverName}} <br>
-                <button class = "conversation btn btn-sm btn-default">View Conversation</button>
-            </li>
-        {{/each}}
+        {{#if conversations}}
+            {{#each conversations}}
+                <li>
+                    Listing: {{listingName}} <br>
+                    Participants: {{senderName}}, {{receiverName}} <br>
+                    <button class = "conversation btn btn-sm btn-default">View Conversation</button>
+                </li>
+            {{/each}}
+        {{else}}
+            <p>You have no messages at this time.</p>
+        {{/if}}
     </ul>
 </template>

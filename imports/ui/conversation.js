@@ -28,8 +28,13 @@ Template.conversation.helpers({
                 sort: {date: 1}
             }
         );
-        console.log(messages);
-        return messages;
+        if (messages.count()){
+            return messages;
+
+        }
+        else {
+            return 0;
+        }
     }
 });
 

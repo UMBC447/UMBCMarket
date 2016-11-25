@@ -1,14 +1,18 @@
 <template name="conversation">
 
     <ul>
-        {{#each messages}}
-            <li>
-                <b>{{senderName}}:</b> {{message_text}} <br>
-                {{date}}
-            </li>
-        {{/each}}
-
+        {{#if messages}}
+            {{#each messages}}
+                    <li>
+                        <b>{{senderName}}:</b> {{message_text}} <br>
+                        {{date}}
+                    </li>
+            {{/each}}
+        {{else}}
+            <p>There are no messages in this conversation</p>
+        {{/if}}
     </ul>
+
 
     <form class = "new-message">
         <textarea class="form-control" cols="40" rows="5" name="message_text" placeholder="Message" ></textarea>

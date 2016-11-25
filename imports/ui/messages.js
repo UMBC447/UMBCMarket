@@ -7,7 +7,14 @@ import './messages';
 
 Template.messages.helpers({
     conversations() {
-        return Conversations.find();
+        var results = Conversations.find();
+        if (results.count() == 0){
+            return 0;
+        }
+        else
+        {
+            return results;
+        }
     }
 });
 
