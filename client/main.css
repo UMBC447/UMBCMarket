@@ -61,6 +61,19 @@ form {
     font-size: 1em;
 }
 
+.link {
+    color: #2574A9;
+}
+
+.new-listing{
+    margin-bottom: 40px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
 .new-task input:focus{
     outline: 0;
 }

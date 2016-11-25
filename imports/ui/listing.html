@@ -35,7 +35,7 @@
                     <div class="panel-body">
                         <div class = "row">
 							<div class="col-md-9">
-                            <b>Author:</b><button type="button" class="btn btn-link viewProfile" style="color:blue; font-weight: bold;">{{posterName}}</button>
+                            <b>Author:</b><button type="button" class="btn-link link viewProfile">{{posterName}}</button>
 							{{#if currentUser}}
 								{{#if isOwner}}
 								{{else}}
@@ -45,20 +45,20 @@
 							</div>
 							
 							
-						</div><br>
+						</div>
 						<div class = "row">
 							<div class="col-md-12">
-								<b>Starting Offer:</b> {{startingOffer}}
+                                <b>Starting Offer:</b> {{startingOffer}}
 							</div>
-                        </div><br>
+                        </div>
                         <div class = "row">
-						<div class="col-md-12">
-                            <b>Description:</b> {{description}}
+						    <div class="col-md-12">
+                                <b>Description:</b> {{description}}
 							</div>
-                        </div><br>
+                        </div>
                         <div class = "row">
-						<div class="col-md-12">
-                            <b>Date:</b> {{date}} <br>
+                            <div class="col-md-12">
+                                <b>Date:</b> {{date}}
 							</div>
                         </div>
                     </div>
