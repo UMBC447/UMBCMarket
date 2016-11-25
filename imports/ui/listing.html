@@ -1,33 +1,71 @@
 <template name="listing">
 
-        {{#if isClosed}}
-            <p>The listing is Closed</p>
-        {{else}}
-            <p>The listing is Open</p>
-        {{/if}}
-
-        {{#if isOwner}}
-            <button class="toggle-closed btn btn-sm btn-default">
-                {{#if isClosed}}
-                    Open Listing
-                {{else}}
-                    Close Listing
-                {{/if}}
-            </button>
-        {{/if}}
-
-        <br>
-        <p>Author - {{posterName}} </p> <br>
-        <p>Title - {{title}} </p> <br>
-        <p>Description - {{description}} </p> <br>
-        <p>Starting Offer - ${{startingOffer}} </p> <br>
-        <p>Date - {{date}} </p> <br>
-        <button class = "viewProfile btn btn-sm btn-default">View Users Profile</button>
-        {{#if currentUser}}
-            {{#if isOwner}}
-            {{else}}
-                <button class = "sendMessage btn btn-sm btn-default">Send Message</button>
-            {{/if}}
-        {{/if}}
+		
+		<div class = "row">
+			<div class="col-md-12">
+			{{#if isClosed}}
+				<div class="alert alert-success" style="display: flex;justify-content: space-between;">
+					<strong>Listing is currently OPEN</strong>
+					{{#if isOwner}}
+					<button class="toggle-closed btn btn-sm btn-default" style="text-alight:right">
+						CLOSE LISTING
+					</button>
+					{{/if}}
+				</div>
+			{{else}}
+				<div class="alert alert-danger" style="display: flex;justify-content: space-between;">
+					<strong>Listing is currently CLOSED</strong>
+					{{#if isOwner}}
+					<button class="toggle-closed btn btn-sm btn-default">
+						OPEN LISTING
+					</button>
+					{{/if}}
+						
+				</div>
+			{{/if}}
+			</div>
+		</div>
+		<div class = "row">
+        <div class = "col-md-1"></div>
+        <div class = "col-md-10">
+                <div class = "panel panel-default">
+                    <div class="panel-heading">
+                        <b><button type="button" class="btn btn-link viewListing" style="color:blue;font-size: 24px; font-weight: bold;">{{title}}</button></b>
+                    </div>
+                    <div class="panel-body">
+                        <div class = "row">
+							<div class="col-md-9">
+                            <b>Author:</b><button type="button" class="btn btn-link viewProfile" style="color:blue; font-weight: bold;">{{posterName}}</button>
+							{{#if currentUser}}
+								{{#if isOwner}}
+								{{else}}
+									<button class = "sendMessage btn btn-link">[msg]</button>
+								{{/if}}
+							{{/if}}
+							</div>
+							
+							
+						</div><br>
+						<div class = "row">
+							<div class="col-md-12">
+								<b>Starting Offer:</b> {{startingOffer}}
+							</div>
+                        </div><br>
+                        <div class = "row">
+						<div class="col-md-12">
+                            <b>Description:</b> {{description}}
+							</div>
+                        </div><br>
+                        <div class = "row">
+						<div class="col-md-12">
+                            <b>Date:</b> {{date}} <br>
+							</div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class = "col-md-1"></div>
+    </div>
+        
 
 </template>

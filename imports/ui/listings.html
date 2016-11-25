@@ -44,7 +44,7 @@
             {{#each listings}}
                 <div class = "panel panel-default">
                     <div class="panel-heading">
-                        <b>{{title}}</b>
+                        <b><button type="button" class="btn btn-link viewListing" style="color:blue;font-size: 24px; font-weight: bold;">{{title}}</button></b>
                     </div>
                     <div class="panel-body">
                         <div class = "row">
@@ -55,9 +55,6 @@
                         </div>
                         <div class = "row">
                             <b>Date:</b> {{date}} <br>
-                        </div>
-                        <div class = "row">
-                            <button class = "viewListing btn btn-sm btn-default">View Listing</button>
                         </div>
                     </div>
                 </div>
