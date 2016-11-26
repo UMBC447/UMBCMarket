@@ -6,6 +6,9 @@ import './listings.html';
 import './listings';
 
 Template.listings.events({
+    'click .viewProfile': function () {
+        Router.go('profile/:_id', {_id:this.ownerId});
+    },
     'click .viewListing': function () {
         Router.go('listing/:_id', {_id:this._id});
     },
