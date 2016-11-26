@@ -1,16 +1,25 @@
 <template name="messages">
-
-    <ul>
-        {{#if conversations}}
+	<div class = "row">
+		<div class = "col-md-1"></div>
+		<div class = "col-md-10">
+		{{#if conversations}}
             {{#each conversations}}
-                <li>
-                    Listing: {{listingName}} <br>
-                    Participants: {{senderName}}, {{receiverName}} <br>
-                    <button class = "conversation btn btn-sm btn-default">View Conversation</button>
-                </li>
+				<div class = "panel panel-default">
+                    <div class="panel-heading">
+                        <b><button type="button" class="btn btn-link conversation" style="color:blue;font-size: 24px; font-weight: bold;">{{listingName}}</button></b>
+                    </div>
+                    <div class="panel-body">
+                        <div class = "row">
+                           <div class="col-md-12">
+								<b>Participants:</b><button type="button" class="btn btn-link viewProfile" style="color:blue; font-weight: bold;">{{senderName}}</button> ,<button type="button" class="btn btn-link viewProfile" style="color:blue; font-weight: bold;">{{receiverName}}</button>
+							</div>
+                        </div>
+                    </div>
+                </div>
             {{/each}}
         {{else}}
             <p>You have no messages at this time.</p>
         {{/if}}
-    </ul>
+		</div>
+	</div>
 </template>

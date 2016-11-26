@@ -1,7 +1,39 @@
 <template name = "profile">
-    User Name: {{username}} <br>
-    Emails: {{getEmail}} <br>
-    Number of ratings: {{getRatings}} <br>
-    Average Rating: {{getAverageRating}} <br>
-    <button class="viewListings btn btn-sm btn-default">View Listings</button>
+	<div class = "row">
+        <div class = "col-md-12">
+                <div class = "panel panel-default">
+                    <div class="panel-heading">
+                        <b style="font-size: 24px; font-weight: bold;">{{username}}</b>
+						{{#if currentUser}}
+							{{#if isOwner}}
+							{{else}}
+								<button class = "sendMessage btn btn-link">[msg]</button>
+							{{/if}}
+						{{/if}}
+                    </div>
+                    <div class="panel-body">
+						<div class = "row">
+							<div class="col-md-12">
+								<button class="viewListings btn btn-sm btn-default">View Listings</button>
+							</div>
+						</div>
+						<div class = "row">
+							<div class="col-md-12">
+								<b>Email:</b> {{getEmail}}
+							</div>
+						</div><br>
+						<div class = "row">
+							<div class="col-md-12">
+								<b>Number of ratings:</b> {{getRatings}}
+							</div>
+                        </div><br>
+                        <div class = "row">
+							<div class="col-md-12">
+								<b>Average Rating:</b> {{getAverageRating}}
+							</div>
+                        </div><br>
+                    </div>
+                </div>
+        </div>
+    </div>
 </template>

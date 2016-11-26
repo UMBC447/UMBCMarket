@@ -1,11 +1,32 @@
 <template name="message">
-    <p>Author - {{posterName}} </p> <br>
-    <p>Title - {{title}} </p> <br>
-    <p>Description - {{description}} </p> <br>
+	 <div class = "panel panel-default">
+                    <div class="panel-heading">
+                        <b style="font-size: 24px; font-weight: bold;">New Message</b>
+                    </div>
+                    <div class="panel-body">
+						<div class = "row">
+							<div class="col-md-12">
+								<b style="font-weight: bold;">To:</b> {{posterName}}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 control-label">
+								<b style="font-weight: bold;">Listing:</b> {{title}}
+							</div>
+						</div>
+                        <div class = "row">
+                           <div class="col-md-12">
+								<form class = "new-message row">
+									<div class="col-md-12">
+										<textarea class="form-control" cols="40" rows="5" name="message_text" placeholder="Message" ></textarea>
+										<input class="btn btn-sm btn-default" type="submit">
+									</div>
+								</form>
+							</div>
+                        </div>
+                    </div>
+                </div>
 
-    <form class = "new-message">
-        <textarea class="form-control" cols="40" rows="5" name="message_text" placeholder="Message" ></textarea>
-        <input class="btn btn-sm btn-default" type="submit">
-    </form>
+    
 
 </template>

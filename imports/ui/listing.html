@@ -1,32 +1,30 @@
 <template name="listing">
-
-		
-		<div class = "row">
-			<div class="col-md-12">
-			{{#if isClosed}}
-				<div class="alert alert-success" style="display: flex;justify-content: space-between;">
-					<strong>Listing is currently OPEN</strong>
-					{{#if isOwner}}
-					<button class="toggle-closed btn btn-sm btn-default" style="text-alight:right">
-						CLOSE LISTING
-					</button>
-					{{/if}}
-				</div>
-			{{else}}
-				<div class="alert alert-danger" style="display: flex;justify-content: space-between;">
-					<strong>Listing is currently CLOSED</strong>
-					{{#if isOwner}}
-					<button class="toggle-closed btn btn-sm btn-default">
-						OPEN LISTING
-					</button>
-					{{/if}}
-						
-				</div>
-			{{/if}}
+	<div class = "row">
+		<div class="col-md-12">
+		{{#if isClosed}}
+			<div class="alert alert-success" style="display: flex;justify-content: space-between;">
+				<strong>Listing is currently OPEN</strong>
+				{{#if isOwner}}
+				<button class="toggle-closed btn btn-sm btn-default" style="text-alight:right">
+					CLOSE LISTING
+				</button>
+				{{/if}}
 			</div>
+		{{else}}
+			<div class="alert alert-danger" style="display: flex;justify-content: space-between;">
+				<strong>Listing is currently CLOSED</strong>
+				{{#if isOwner}}
+				<button class="toggle-closed btn btn-sm btn-default">
+					OPEN LISTING
+				</button>
+				{{/if}}
+					
+			</div>
+		{{/if}}
 		</div>
-		<div class = "row">
-        <div class = "col-md-1"></div>
+	</div>
+	<div class = "row">
+		<div class = "col-md-1"></div>
         <div class = "col-md-10">
                 <div class = "panel panel-default">
                     <div class="panel-heading">
