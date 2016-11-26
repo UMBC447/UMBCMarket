@@ -74,5 +74,9 @@ Template.conversation.events({
                 target.message_text.value = " ";
             }
         })
-    }
+    },
+    'click .viewProfile': function () {
+        Router.go('profile/:_id', {_id:this.senderId});
+    },
+
 });

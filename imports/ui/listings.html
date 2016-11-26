@@ -2,7 +2,7 @@
     <div class = "row">
         {{#if atMainMenu}}
             {{#if currentUser}}
-                    <form class = "form-horizontal new-listing" role="form">
+                    <form class = "form-horizontal" role="form">
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">Title</label>
                             <div class="col-sm-8">
@@ -36,35 +36,46 @@
             {{/if}}
         {{/if}}
     </div>
-
-
+    <div class="space-top"></div>
     <div class = "row">
         <div class = "col-md-1"></div>
         <div class = "col-md-10">
-            {{#each listings}}
-                <div class = "panel panel-default">
-                    <div class="panel-heading">
-                        <b><button type="button" class="btn btn-link link title viewListing">{{title}}</button></b>
-                    </div>
-                    <div class="panel-body">
-                        <div class = "row">
-                            <div class="col-md-12">
-                                <b>Author:</b><button type="button" class="btn-link link viewProfile">{{posterName}}</button>
+            {{#if hasListings}}
+                {{#each listings}}
+                    <div class = "panel panel-default">
+                        <div class="panel-heading">
+                            <b><button type="button" class="btn btn-link link title viewListing">{{title}}</button></b>
+                        </div>
+                        <div class="panel-body">
+                            <div class = "row">
+                                <div class="col-md-12">
+                                    <b>Author:</b><button type="button" class="btn-link link viewProfile">{{posterName}}</button>
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class="col-md-12">
+                                    <b>Description:</b> {{description}}
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class="col-md-12">
+                                    <b>Date:</b> {{date}}
+                                </div>
                             </div>
                         </div>
-                        <div class = "row">
-							<div class="col-md-12">
-								<b>Description:</b> {{description}}
-							</div>
-                        </div>
-                        <div class = "row">
-							<div class="col-md-12">
-								<b>Date:</b> {{date}}
-							</div>
-                        </div>
                     </div>
-                </div>
-            {{/each}}
+                {{/each}}
+            {{else}}
+                {{#if atMainMenu}}
+                    <div class="alert alert-warning center-text" role="alert" ><b>No listings yet. Try logging in and posting one!</b></div>
+                {{/if}}
+                {{#if atSearch}}
+                    <div class="alert alert-warning center-text" role="alert"><b>No results for your search query.</b></div>
+                {{/if}}
+                {{#if atProfile}}
+                    <div class="alert alert-warning center-text" role="alert"><b>This user has not posted any listings yet.</b></div>
+                {{/if}}
+            {{/if}}
         </div>
         <div class = "col-md-1"></div>
     </div>

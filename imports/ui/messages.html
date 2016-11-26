@@ -1,4 +1,5 @@
 <template name="messages">
+    <div class = "space-top"></div>
 	<div class = "row">
 		<div class = "col-md-1"></div>
 		<div class = "col-md-10">
@@ -6,19 +7,21 @@
             {{#each conversations}}
 				<div class = "panel panel-default">
                     <div class="panel-heading">
-                        <b><button type="button" class="btn btn-link conversation" style="color:blue;font-size: 24px; font-weight: bold;">{{listingName}}</button></b>
+                        <b><button type="button" class="btn-link link title conversation">{{listingName}}</button></b>
                     </div>
                     <div class="panel-body">
                         <div class = "row">
                            <div class="col-md-12">
-								<b>Participants:</b><button type="button" class="btn btn-link viewProfile" style="color:blue; font-weight: bold;">{{senderName}}</button> ,<button type="button" class="btn btn-link viewProfile" style="color:blue; font-weight: bold;">{{receiverName}}</button>
+								<b>Participants:</b>
+                                <button type="button" class="btn-link link viewSenderProfile">{{senderName}}</button>
+                               ,<button type="button" class="btn-link link viewReceiverProfile">{{receiverName}}</button>
 							</div>
                         </div>
                     </div>
                 </div>
             {{/each}}
         {{else}}
-            <p>You have no messages at this time.</p>
+            <div class="alert alert-warning" role="alert">You have no messages at this time.</div>
         {{/if}}
 		</div>
 	</div>

@@ -4,6 +4,17 @@ import { Listings } from '../api/listings.js';
 
 import './listings.html';
 import './listings';
+Template.listings.helpers({
+   hasListings(){
+       if(this.listings.count() > 0){
+           return true;
+       }
+       else
+       {
+           return false;
+       }
+   }
+});
 
 Template.listings.events({
     'click .viewProfile': function () {

@@ -1,13 +1,13 @@
 <template name="conversation">
 
-    <div class = "panel panel-default">
+    <div class="space-top"></div>
         {{#if messages}}
             {{#each messages}}
-                    
-                    <div class="panel-body">
+            <div class = "panel panel-default">
+                <div class="panel-body">
                         <div class = "row">
                            <div class="col-md-12">
-								<button type="button" class="btn btn-link viewProfile" style="color:blue; font-weight: bold;">{{senderName}}</button>: {{message_text}}
+								<button type="button" class="btn-link link viewProfile">{{senderName}}</button>: {{message_text}}
 							</div>
                         </div>
                         <div class = "row">
@@ -16,18 +16,18 @@
 							</div>
                         </div>
                     </div>
-                
+                </div>
+
             {{/each}}
         {{else}}
             <p>There are no messages in this conversation</p>
         {{/if}}
-    </div>
 
 	
     <form class = "new-message row">
 		<div class="col-md-12">
 			<textarea class="form-control" cols="40" rows="5" name="message_text" placeholder="Message" ></textarea>
-			<input class="btn btn-sm btn-default" type="submit">
+			<input class="btn btn-sm btn-default" type="submit" value="send">
 		</div>
 	</form>
 

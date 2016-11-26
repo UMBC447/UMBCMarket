@@ -26,7 +26,9 @@ Router.route('home', {
     data: function() {
         return {
             listings: Listings.find(),
-            atMainMenu: true
+            atMainMenu: true,
+            atSearch: false,
+            atProfile: false          
         }
     },
     template: 'listings'
@@ -48,7 +50,9 @@ Router.route('search_results/:_search_key', {
                     ]},
                 {sort: {date: -1}
                 }),
-            atMainMenu: false
+            atMainMenu: false,
+            atSearch: true,
+            atProfile: false,
         }
     },
     template: 'listings'
@@ -63,7 +67,9 @@ Router.route('listings/:_userId', {
     data: function() {
         return {
             listings: Listings.find({ownerId: this.params._userId}),
-            atMainMenu: false
+            atMainMenu: false,
+            atSearch: false,
+            atProfile: true      
         }
     },
     template: 'listings'
