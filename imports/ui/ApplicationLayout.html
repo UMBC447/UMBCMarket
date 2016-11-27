@@ -64,11 +64,14 @@
                             </button>
                         </div>
                         <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav navbar-inverse navbar-right">
+                            <ul class="nav navbar-nav navbar-inverse">
                                 {{#if currentUser}}
                                     <li><a href="" class="viewProfile">View Profile</a></li>
                                     <li><a href="" class="viewMessages">View Messages</a></li>
                                 {{/if}}
+                            </ul>
+                            <ul class="nav navbar-nav navbar-inverse navbar-right">
+
                                 {{> loginButtons}}
                             </ul>
                         </div>
