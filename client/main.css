@@ -18,8 +18,25 @@ body {
 }
 
 
+.secondary-container{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+#login-buttons{
+    line-height: inherit;
+}
 
 .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100%;
+    background: white;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.container-fluid {
     max-width: 1200px;
     margin: 0 auto;
     min-height: 100%;
@@ -61,6 +78,15 @@ form {
     font-size: 1em;
 }
 
+.login-link-text{
+
+}
+.navbar-right a{
+    color: white;
+    background-color: #2c3e50;
+
+}
+
 .link {
     color: #2574A9;
 }
@@ -71,6 +97,13 @@ form {
 
 .center-text{
     text-align: center;
+}
+
+.container-no-padding{
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100%;
+    background: white;
 }
 
 .space-top{
