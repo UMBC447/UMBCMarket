@@ -30,6 +30,9 @@ Template.header.helpers({
             case 'new_message/:_id':
                 return 'Send Message';
                 break;
+            case 'listings/:_userId':
+                return 'Listings By User';
+                break;
         }
         console.log(routeName);
         return routeName;

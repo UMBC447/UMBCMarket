@@ -16,6 +16,9 @@ body {
     font-size: 14px;
 }
 
+.navbar-inverse .navbar-brand{
+    color: #ecf0f1;
+}
 
 .secondary-container{
     padding-right: 15px;
