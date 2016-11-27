@@ -51,23 +51,30 @@
                         </div>
                     </form>
                 </div>
-
+                <br>
                 <div class="row">
-                    <br>
-                    <div class="col-sm-8" style="margin-top: -10px">
+                    <div class="navbar navbar-inverse" role="navigation">
+                        <div class="navbar-header">
+                            <p class="navbar-brand">{{getRouteName}}</p>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-inverse navbar-right">
+                                {{#if currentUser}}
+                                    <li><a href="" class="viewProfile">View Profile</a></li>
+                                    <li><a href="" class="viewMessages">View Messages</a></li>
+                                {{/if}}
+                                {{> loginButtons}}
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-sm-4 col-sm-offset-8">
-                        {{> loginButtons}}
-                        {{#if currentUser}}
-                            <button class = "viewMessages btn btn-sm btn-default">Messages</button>
-                            <button class = "viewProfile btn btn-sm btn-default">My Profile</button>
-                        {{/if}}
-
-                    </div>
-
-
                 </div>
             </div>
-	</div>
+        </div>
 </template>
 

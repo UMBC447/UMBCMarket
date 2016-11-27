@@ -1,8 +1,7 @@
 /* CSS declarations go here */
 body {
     font-family: sans-serif;
-    background-color: #315481;
-    background-image: linear-gradient(to bottom, #315481, #918e82 100%);
+    background-color: #f1c40f;
     background-attachment: fixed;
 
     position: absolute;
@@ -81,11 +80,6 @@ form {
 .login-link-text{
 
 }
-.navbar-right a{
-    color: white;
-    background-color: #2c3e50;
-
-}
 
 .link {
     color: #2574A9;
@@ -134,29 +128,6 @@ ul {
     position: relative;
 }
 
-li {
-    position: relative;
-    list-style: none;
-    padding: 15px;
-    border-bottom: #eee solid 1px;
-}
-
-li .text {
-    margin-left: 10px;
-}
-
-li.checked {
-    color: #888;
-}
-
-li.checked .text {
-    text-decoration: line-through;
-}
-
-li.private {
-    background: #eee;
-    border-color: #ddd;
-}
 
 header .hide-completed {
     float: right;
