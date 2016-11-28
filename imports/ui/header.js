@@ -44,9 +44,8 @@ Template.header.events({
     'click .home': function () {
         Router.go('home');
     },
-    'click .viewMessages': function () {
+    'click .viewMessages': function (event) {
         event.preventDefault();
-
         Router.go('messages');
     },
     'click .viewProfile': function (event) {
