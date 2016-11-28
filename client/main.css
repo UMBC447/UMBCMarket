@@ -3,8 +3,7 @@ body {
     font-family: sans-serif;
     /*background-color: #f1c40f;*/
     /*background-attachment: fixed; */
-    background-color: #000000;
-    background-image: linear-gradient(to bottom, #000000, #b29600 150%);
+    background-color: #E9D460;
     background-attachment: fixed;
 
     position: absolute;
@@ -36,9 +35,13 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     min-height: 100%;
-    background: white;
+    background: #ECF0F1;
     padding-right: 0px;
     padding-left: 0px;
+}
+
+hr{
+    border-top-color: #95a5a6;
 }
 
 .container-fluid {
@@ -48,8 +51,10 @@ body {
     background: white;
 }
 
+
+
 header {
-    background: #000000;
+    background: #262520;
     /*background-image: linear-gradient(to bottom, #d0edf5, #e1e5f0 100%);*/
     padding: 20px 15px 15px 15px;
     position: relative;
