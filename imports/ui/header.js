@@ -11,28 +11,20 @@ Template.header.helpers({
         switch (routeName){
             case 'messages':
                 return 'Messages';
-                break;
             case 'search_results/:_search_key':
                 return 'Search Results';
-                break;
             case 'profile/:_id':
                 return 'Profile';
-                break;
             case 'conversation/:_id':
                 return 'Conversation';
-                break;
             case 'home':
                 return 'Home';
-                break;
             case 'listing/:_id':
                 return 'Listing';
-                break;
             case 'new_message/:_id':
                 return 'Send Message';
-                break;
             case 'listings/:_userId':
                 return 'Listings By User';
-                break;
         }
         console.log(routeName);
         return routeName;

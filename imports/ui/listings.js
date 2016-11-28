@@ -6,13 +6,7 @@ import './listings.html';
 import './listings';
 Template.listings.helpers({
    hasListings(){
-       if(this.listings.count() > 0){
-           return true;
-       }
-       else
-       {
-           return false;
-       }
+       return (this.listings.count() > 0);
    }
 });
 
