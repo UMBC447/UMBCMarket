@@ -2,7 +2,7 @@
     <div class = "row">
         {{#if atMainMenu}}
             {{#if currentUser}}
-                    <form class = "form-horizontal" role="form">
+                    <form class = "form-horizontal new-listing" role="form">
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">Title</label>
                             <div class="col-sm-8">
@@ -13,7 +13,7 @@
                         <div class="form-group">
                             <label for="startingOffer" class="col-sm-2 control-label">Starting Offer</label>
                             <div class="col-sm-8">
-                                <input type ="text" class = "form-control" name="startingOffer" id = "startingOffer" placeholder="Add Starting Offer">
+                                <input type ="number" class = "form-control" name="startingOffer" id = "startingOffer" placeholder="Add Starting Offer" step=.1 min=0>
                             </div>
                             <div class="col-sm-2"></div>
                         </div>
