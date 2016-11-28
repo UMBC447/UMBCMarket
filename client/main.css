@@ -1,7 +1,10 @@
 /* CSS declarations go here */
 body {
     font-family: sans-serif;
-    background-color: #f1c40f;
+    /*background-color: #f1c40f;*/
+    /*background-attachment: fixed; */
+    background-color: #000000;
+    background-image: linear-gradient(to bottom, #000000, #b29600 150%);
     background-attachment: fixed;
 
     position: absolute;
