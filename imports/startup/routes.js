@@ -7,6 +7,7 @@ import { Conversations } from '../api/conversations.js';
 import '../api/profiles.js';
 import '../ui/listing.js';
 import '../ui/listings.js';
+import '../ui/new_listing.js';
 import '../ui/profile.js';
 import '../ui/message.js';
 import '../ui/messages.js';
@@ -86,6 +87,11 @@ Router.route('listing/:_id', {
     template: 'listing'
 });
 
+Router.route('new_listing/:_id', {
+    path: 'new_listing/:_id',
+
+    template: 'new_listing'
+});
 
 Router.route('profile/:_id', {
     path: 'profile/:_id',

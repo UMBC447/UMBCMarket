@@ -25,6 +25,8 @@ Template.header.helpers({
                 return 'Send Message';
             case 'listings/:_userId':
                 return 'Listings By User';
+            case 'new_listing/:_id':
+                return 'New Listing'
         }
         console.log(routeName);
         return routeName;
@@ -43,6 +45,10 @@ Template.header.events({
     'click .viewProfile': function (event) {
         event.preventDefault();
         Router.go('profile/:_id', {_id: Meteor.userId});
+    },
+    'click .new_listing': function (event) {
+        event.preventDefault();
+        Router.go('new_listing/:_id', {_id: Meteor.userId});
     },
     'click #login-buttons-logout': function (event) {
         Router.go('home');

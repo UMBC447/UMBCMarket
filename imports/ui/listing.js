@@ -1,5 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
+import { Listings } from '../api/listings.js';
+
 
 import './listing.html';
 
@@ -13,6 +15,7 @@ Template.listing.helpers({
 });
 
 Template.listing.events({
+
     'click .toggle-closed'(){
         //set the closed property to opposite of its current value
         Meteor.call('listings.setClosed', this._id, !this.closed);

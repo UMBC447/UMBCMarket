@@ -37,18 +37,27 @@ if (Meteor.isServer){
 
 //TODO: Add image support
 Meteor.methods({
-    'listings.insert'(title, description, startingOffer){
+    'listings.insert'(title, description, startingOffer, image){
         //validate data
         check(title, String);
         check(description, String);
         check(startingOffer, Number);
-
         //confirm user is logged in
         if (!this.userId){
                 //confirm user is logged in
                 throw new Meteor.Error("logged-out",
                     "The user must be logged in to post a listing");
                 
+        }
+        if(title == '')
+        {
+            throw new Meteor.Error("empty_title",
+                "Must include a title.");
+        }
+        if(description == '')
+        {
+            throw new Meteor.Error("empty_desc",
+                "Must include a description.");
         }
 
         
@@ -57,11 +66,15 @@ Meteor.methods({
             title: title,
             description: description,
             startingOffer: startingOffer,
+            image: image,
             date: new Date(),
             ownerId: this.userId,
             closed: false,
             posterName: Meteor.users.findOne(this.userId).username
+
         });
+
+        return listingId;
 
     },
     'listings.setClosed'(listingId, setClosed){
@@ -80,6 +93,6 @@ Meteor.methods({
         }
 
         Listings.update(listingId, {$set: {closed: setClosed}});
-    }
+    },
     //TODO add update method
 });

@@ -1,0 +1,41 @@
+<template name="new_listing" xmlns="http://www.w3.org/1999/html">
+    <div class = "row">
+        <form class = "form-horizontal new-listing" role="form">
+            <div class="form-group">
+                <label for="title" class="col-sm-2 control-label">Title</label>
+                <div class="col-sm-8">
+                    <input type ="text" class = "form-control" name="title" id = "title" placeholder="Add Title">
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+            <div class="form-group">
+                <label for="startingOffer" class="col-sm-2 control-label">Starting Offer</label>
+                <div class="col-sm-8">
+                    <input type ="number" class = "form-control" name="startingOffer" id = "startingOffer" placeholder="Add Starting Offer" step=.1 min=0>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-sm-2 control-label">Description</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" cols="40" rows="5" name="description" id="description" placeholder="Add Description" ></textarea>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+            <div class="form-group">
+                <label for="description" class="col-sm-2 control-label">Image </label>
+                <div class="col-sm-8">
+                    <input type = "file" name="image" id="image" accept=".jpg, .jpeg, .png, ">
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+            <div class="form-group">
+                <div class = "col-sm-2"></div>
+                <div class = "col-sm-8">
+                    <input class="btn btn-sm btn-default" type="submit">
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </form>
+    </div>
+</template>
