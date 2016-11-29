@@ -29,6 +29,10 @@
                 <div class = "panel panel-default">
                     <div class="panel-heading">
                         <b style="font-size: 24px; font-weight: bold;">{{title}}</b>
+                        {{#if isOwner}}
+                            <button class="edit btn btn-sm btn-default">Edit Listing</button>
+                            <button class="delete btn btn-sm btn-default">Delete Listing</button>
+                        {{/if}}
                     </div>
                     <div class="panel-body">
                         <div class = "row">
@@ -59,10 +63,12 @@
                                 <b>Date:</b> {{date}}
 							</div>
                         </div>
+                        <div class = "row">
+                            <div class = "col-md-3"></div>
+                            <img src={{image}} style="width:304px;height:228px;">
+                        </div>
                     </div>
                 </div>
         </div>
-        <div class = "col-md-1"></div>
     </div>
-    <img src={{image}} style="width:304px;height:228px;">
 </template>

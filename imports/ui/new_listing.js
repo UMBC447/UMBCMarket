@@ -21,14 +21,17 @@ Template.new_listing.events({
             return;
         }
         var file=files[0];
-        //
-        console.log(file);
-        var fileReader=new FileReader();
-        fileReader.onload=function(event) {
-            var dataUrl = event.target.result;
-            template.dataUrl.set(dataUrl);
+        if(file.size < 250001) {
+            var fileReader = new FileReader();
+            fileReader.onload = function (event) {
+                var dataUrl = event.target.result;
+                template.dataUrl.set(dataUrl);
+            }
+            fileReader.readAsDataURL(file);
         }
-        fileReader.readAsDataURL(file);
+        else{
+            return;
+        }
     },
     'submit .new-listing'(event) {
 
@@ -47,7 +50,6 @@ Template.new_listing.events({
         reader.onload = function(event){
             var dataURL = event.target.result;
             Template.instance().dataUrl.set(dataURL);
-            console.log(dataURL);
         };
 
         // Insert a task into the collection

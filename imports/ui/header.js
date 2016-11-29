@@ -26,7 +26,9 @@ Template.header.helpers({
             case 'listings/:_userId':
                 return 'Listings By User';
             case 'new_listing/:_id':
-                return 'New Listing'
+                return 'New Listing';
+            case 'edit_listing/:_id':
+                return 'Edit Listing';
         }
         console.log(routeName);
         return routeName;

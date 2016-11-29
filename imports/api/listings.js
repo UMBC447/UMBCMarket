@@ -42,7 +42,7 @@ Meteor.methods({
         check(title, String);
         check(description, String);
         check(startingOffer, Number);
-        console.log(image);
+
         //confirm user is logged in
         if (!this.userId){
                 //confirm user is logged in
@@ -95,5 +95,27 @@ Meteor.methods({
 
         Listings.update(listingId, {$set: {closed: setClosed}});
     },
+    'listings.delete'(listingId){
+        check(listingId, String);
+
+        Listings.remove({_id: listingId});
+    },
+    'listings.edit'(listingId, title, description, startingOffer){
+        check(listingId, String);
+        check(title, String);
+        check(startingOffer, Number);
+        check(description, String);
+
+        Listings.update(listingId, {
+            $set: { title: title,
+                    description: description,
+                    startingOffer: startingOffer
+            }
+        });
+
+        return listingId;
+
+    },
+
     //TODO add update method
 });

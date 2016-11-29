@@ -8,6 +8,7 @@ import '../api/profiles.js';
 import '../ui/listing.js';
 import '../ui/listings.js';
 import '../ui/new_listing.js';
+import '../ui/edit_listing.js';
 import '../ui/profile.js';
 import '../ui/message.js';
 import '../ui/messages.js';
@@ -91,6 +92,16 @@ Router.route('new_listing/:_id', {
     path: 'new_listing/:_id',
 
     template: 'new_listing'
+});
+Router.route('edit_listing/:_id', {
+    path: 'edit_listing/:_id',
+    waitOn: function () {
+        return Meteor.subscribe('listing', this.params._id);
+    },
+    data: function() {
+        return Listings.findOne({_id: this.params._id});
+    },
+    template: 'edit_listing'
 });
 
 Router.route('profile/:_id', {
