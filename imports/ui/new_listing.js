@@ -26,11 +26,12 @@ Template.new_listing.events({
             fileReader.onload = function (event) {
                 var dataUrl = event.target.result;
                 template.dataUrl.set(dataUrl);
-            }
+            };
             fileReader.readAsDataURL(file);
         }
-        else{
-            return;
+        else
+        {
+            Session.set("errorMessage", "Image size must be less than 250kb");
         }
     },
     'submit .new-listing'(event) {
@@ -43,33 +44,44 @@ Template.new_listing.events({
         const title = target.title.value;
         const description = target.description.value;
         const startingOffer = Number(target.startingOffer.value);
-        const image = target.images[0];
 
-        var reader = new FileReader();
-
-        reader.onload = function(event){
-            var dataURL = event.target.result;
-            Template.instance().dataUrl.set(dataURL);
-        };
-
-        // Insert a task into the collection
-        Meteor.call('listings.insert', title, description, startingOffer, Template.instance().dataUrl.get(), function(error, result){
-            if (error && error.error === "logged-out") {
-                // show a nice error message
-                Session.set("errorMessage", "Please log in to post a listing.");
-            }
-            if (error && error.error === "empty_title") {
-                // show a nice error message
-            }
-            else
+        if (!Template.instance().dataUrl.get()){
+            if (Session.get("errorMessage") !=  "Image size must be less than 250kb")
             {
-                // Clear form
-                target.title.value = '';
-                target.description.value = '';
-                target.startingOffer.value = '';
-
-                Router.go('listing/:_id', {_id:result});
+                Session.set("errorMessage", "Must include an image");
             }
-        });
+        }
+        else if (!title){
+            Session.set("errorMessage", "Listing must have a title");
+        }
+        else if (!description){
+            Session.set("errorMessage", "Listing must have a description");
+        }
+        else if (!startingOffer){
+            Session.set("errorMessage", "Listing must have a Starting offer");
+        }
+        else
+        {
+            // Insert a listing into the collection
+            Meteor.call('listings.insert', title, description, startingOffer, Template.instance().dataUrl.get(), function(error, result){
+                if (error && error.error === "logged_out") {
+                    // show a nice error message
+                    Session.set("errorMessage", "Please log in to post a listing.");
+                }
+                else if (error && error.error === "empty_title") {
+                    Session.set("errorMessage", "Listing must have a title");
+                }
+                else if (error && error.error === "empty_desc") {
+                    Session.set("errorMessage", "Listing must have a description");
+                }
+                else
+                {
+                    Session.set("errorMessage", null);
+                    Router.go('listing/:_id', {_id:result});
+                }
+            });
+        }
+
+
     }
 });

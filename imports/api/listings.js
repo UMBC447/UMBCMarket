@@ -87,17 +87,21 @@ Meteor.methods({
         //this user dosen't own this listing, can't update
         if (listing.ownerId !== this.userId){
             //confirm user is logged in
-            if (!this.userId){
                 throw new Meteor.Error("not-authorized",
                     "You must be the owner of this listing to update it");
-            }
         }
 
         Listings.update(listingId, {$set: {closed: setClosed}});
     },
     'listings.delete'(listingId){
         check(listingId, String);
+        const listing = Listings.findOne(listingId);
 
+        if (listing.ownerId !== this.userId){
+            //confirm user is logged in
+            throw new Meteor.Error("not-authorized",
+                "You must be the owner of this listing to delete it");
+        }
         Listings.remove({_id: listingId});
     },
     'listings.edit'(listingId, title, description, startingOffer){
@@ -105,6 +109,12 @@ Meteor.methods({
         check(title, String);
         check(startingOffer, Number);
         check(description, String);
+        const listing = Listings.findOne(listingId);
+        if (listing.ownerId !== this.userId){
+            //confirm user is logged in
+            throw new Meteor.Error("not-authorized",
+                "You must be the owner of this listing to update it");
+        }
 
         Listings.update(listingId, {
             $set: { title: title,
@@ -112,9 +122,7 @@ Meteor.methods({
                     startingOffer: startingOffer
             }
         });
-
         return listingId;
-
     },
 
     //TODO add update method

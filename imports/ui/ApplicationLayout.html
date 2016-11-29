@@ -5,6 +5,9 @@
                 {{> header }}
             </header>
         <div class="secondary-container">
+            <div class="row">
+                {{> errorDisplay}}
+            </div>
 
             {{> yield}}
 
@@ -29,6 +32,16 @@
         </div>
 
     </div>
+</template>
+
+
+<template name="errorDisplay">
+    {{#if errorMessage}}
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>{{errorMessage}}</strong>
+        </div>
+    {{/if}}
 </template>
 
 <template name="header">

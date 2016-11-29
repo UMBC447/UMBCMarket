@@ -1,14 +1,13 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Listings } from '../api/listings.js';
+import { Session } from 'meteor/session';
 
 
 import './listing.html';
 
 Template.listing.helpers({
    isOwner() {
-       console.log(this.image);
-
        return this.ownerId == Meteor.userId();
    },
     isClosed() {

@@ -13,6 +13,7 @@ import '../ui/profile.js';
 import '../ui/message.js';
 import '../ui/messages.js';
 import '../ui/header.js';
+import '../ui/errorDisplay.js';
 import '../ui/conversation.js';
 import '../ui/ApplicationLayout.html';
 

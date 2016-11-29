@@ -5,7 +5,6 @@ import '../imports/api/listings.js';
 import '../imports/api/messages.js';
 import '../imports/api/conversations.js';
 
-
 Meteor.startup(() => {
     //override onCreateUser to include the fields we need
     //TODO add avatar

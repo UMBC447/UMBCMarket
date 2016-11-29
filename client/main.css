@@ -18,9 +18,37 @@ body {
     font-size: 14px;
 }
 
+div.alert-danger {
+    position: relative;
+}
+
+div.alert-danger p.pull-left {
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+}
+
 .navbar-inverse .navbar-brand{
     color: #ecf0f1;
 }
+
+.imgContainer {
+    height: 200px;
+}
+
+.imgContainer.thumb {
+    height: 120px;
+}
+
+.imgContainer  .img-responsive {
+    display: block;
+    width: auto;
+    max-height: 100%;
+}
+
 
 .secondary-container{
     padding-right: 15px;
@@ -130,14 +158,7 @@ ul {
     background: white;
 }
 
-.delete {
-    float: right;
-    font-weight: bold;
-    background: none;
-    font-size: 1em;
-    border: none;
-    position: relative;
-}
+
 
 
 header .hide-completed {

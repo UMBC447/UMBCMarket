@@ -22,25 +22,33 @@ Template.edit_listing.events({
         const description = target.description.value;
         const startingOffer = Number(target.startingOffer.value);
 
+        console.log(startingOffer);
+        if (!title){
+            Session.set("errorMessage", "Listing must have a title");
+        }
+        else if (!description){
+            Session.set("errorMessage", "Listing must have a description");
+        }
+        else
+        {
 
-
-        Meteor.call('listings.edit', this._id, title, description, startingOffer, function(error, result){
-            if (error && error.error === "logged-out") {
-                // show a nice error message
-                Session.set("errorMessage", "Please log in to post a listing.");
-            }
-            if (error && error.error === "empty_title") {
-                // show a nice error message
-            }
-            else
-            {
-                // Clear form
-                target.title.value = '';
-                target.description.value = '';
-                target.startingOffer.value = '';
-
-                Router.go('listing/:_id', {_id:result});
-            }
-        });
+            Meteor.call('listings.edit', this._id, title, description, startingOffer, function(error, result){
+                if (error && error.error === "logged_out") {
+                    // show a nice error message
+                    Session.set("errorMessage", "Please log in to post a listing.");
+                }
+                else if (error && error.error === "empty_title") {
+                    Session.set("errorMessage", "Listing must have a title");
+                }
+                else if (error && error.error === "empty_desc") {
+                    Session.set("errorMessage", "Listing must have a description");
+                }
+                else
+                {
+                    Session.set("errorMessage", null);
+                    Router.go('listing/:_id', {_id:result});
+                }
+            });
+        }
     }
 });
