@@ -7,6 +7,8 @@ import './listing.html';
 
 Template.listing.helpers({
    isOwner() {
+       console.log(this.image);
+
        return this.ownerId == Meteor.userId();
    },
     isClosed() {

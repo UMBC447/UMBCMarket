@@ -1,14 +1,35 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { Listings } from '../api/listings.js';
+import { ReactiveVar } from 'meteor/reactive-var'
 
 import './new_listing.html';
 
+Template.new_listing.created=function(){
+    this.dataUrl=new ReactiveVar();
+};
 Template.new_listing.helpers({
-
+    submitDisabled:function(){
+        return Template.instance().dataUrl.get();
+    }
 });
 
 Template.new_listing.events({
+    "change input[type='file']":function(event,template){
+        var files=event.target.files;
+        if(files.length===0){
+            return;
+        }
+        var file=files[0];
+        //
+        console.log(file);
+        var fileReader=new FileReader();
+        fileReader.onload=function(event) {
+            var dataUrl = event.target.result;
+            template.dataUrl.set(dataUrl);
+        }
+        fileReader.readAsDataURL(file);
+    },
     'submit .new-listing'(event) {
 
         // Prevent default browser form submit
@@ -19,19 +40,18 @@ Template.new_listing.events({
         const title = target.title.value;
         const description = target.description.value;
         const startingOffer = Number(target.startingOffer.value);
-        const image = target.files[0];
+        const image = target.images[0];
 
         var reader = new FileReader();
 
         reader.onload = function(event){
-            var buffer = new Uint8Array(reader.result) // convert to binary
-            return buffer;
-        }
-
-        var image_ = reader.readAsArrayBuffer(image);
+            var dataURL = event.target.result;
+            Template.instance().dataUrl.set(dataURL);
+            console.log(dataURL);
+        };
 
         // Insert a task into the collection
-        Meteor.call('listings.insert', title, description, startingOffer, image_, function(error, result){
+        Meteor.call('listings.insert', title, description, startingOffer, Template.instance().dataUrl.get(), function(error, result){
             if (error && error.error === "logged-out") {
                 // show a nice error message
                 Session.set("errorMessage", "Please log in to post a listing.");

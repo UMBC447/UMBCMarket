@@ -1,4 +1,4 @@
-<template name="new_listing" xmlns="http://www.w3.org/1999/html">
+<template name="new_listing">
     <div class = "row">
         <form class = "form-horizontal new-listing" role="form">
             <div class="form-group">
@@ -25,7 +25,7 @@
             <div class="form-group">
                 <label for="description" class="col-sm-2 control-label">Image </label>
                 <div class="col-sm-8">
-                    <input type = "file" name="image" id="image" accept=".jpg, .jpeg, .png, ">
+                    <input type = "file" name="image" id="images" accept=".jpg, .jpeg, .png, " disabled={{submitDisabled}}>
                 </div>
                 <div class="col-sm-2"></div>
             </div>

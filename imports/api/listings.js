@@ -42,6 +42,7 @@ Meteor.methods({
         check(title, String);
         check(description, String);
         check(startingOffer, Number);
+        console.log(image);
         //confirm user is logged in
         if (!this.userId){
                 //confirm user is logged in
