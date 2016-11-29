@@ -9,18 +9,18 @@ Template.new_listing.created=function(){
     this.dataUrl=new ReactiveVar();
 };
 Template.new_listing.helpers({
-    submitDisabled:function(){
+    submitDisabled:function() {
         return Template.instance().dataUrl.get();
     }
 });
 
 Template.new_listing.events({
     "change input[type='file']":function(event,template){
-        var files=event.target.files;
-        if(files.length===0){
+        var files = event.target.files;
+        if(files.length === 0){
             return;
         }
-        var file=files[0];
+        var file = files[0];
         if(file.size < 250001) {
             var fileReader = new FileReader();
             fileReader.onload = function (event) {

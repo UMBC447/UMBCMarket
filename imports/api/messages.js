@@ -67,14 +67,16 @@ Meteor.methods({
 
         var senderName = Meteor.users.findOne({_id: this.userId}).username;
 
-        // if (Meteor.isServer) {
-        //     //if the client gave us bad data for the recievers name
-        //     if (Meteor.users.findOne({_id: receiverId}).username != receiverName)
-        //     {
-        //         throw new Meteor.Error("validation-error",
-        //             "You're sending a message to a user that dosen't exist");
-        //     }
-        // }
+        /* 
+        if (Meteor.isServer) {        
+        //if the client gave us bad data for the recievers name
+            if (Meteor.users.findOne({_id: receiverId}).username != receiverName)
+            {
+                throw new Meteor.Error("validation-error",
+                    "You're sending a message to a user that dosen't exist");
+            }
+        }
+	*/
 
         //confirm user is logged in
         if (!this.userId){

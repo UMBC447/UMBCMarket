@@ -22,15 +22,15 @@ Meteor.startup(() => {
     });
     //Ensuring every user has an email address, should be in server-side code
     Accounts.validateNewUser(function (user) {
-        // new SimpleSchema({
-        //     _id: { type: String },
-        //     emails: { type: Array },
-        //     'emails.$': { type: Object },
-        //     'emails.$.address': { type: String },
-        //     'emails.$.verified': { type: Boolean },
-        //     createdAt: { type: Date },
-        //     services: { type: Object, blackbox: true }
-        // }).validate(user);
+        /*  new SimpleSchema({
+            _id: { type: String },
+            emails: { type: Array },
+            'emails.$': { type: Object },
+            'emails.$.address': { type: String },
+            'emails.$.verified': { type: Boolean },
+            createdAt: { type: Date },
+            services: { type: Object, blackbox: true }
+        }).validate(user); */
         console.log(user);
         if (user.emails[0].address.endsWith("umbc.edu"))
             return true;
