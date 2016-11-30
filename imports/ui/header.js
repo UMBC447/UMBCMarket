@@ -59,8 +59,7 @@ Template.header.events({
 
         event.preventDefault();
 
-        const target = event.target;
-        const search_key = "/" + target.search_term.value + "/";
+        const search_key = "/" + event.target.search_term.value + "/";
 
         Router.go('search_results/:_search_key', {_search_key: search_key})
     }

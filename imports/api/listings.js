@@ -35,7 +35,6 @@ if (Meteor.isServer){
     );
 }
 
-//TODO: Add image support
 Meteor.methods({
     'listings.insert'(title, description, startingOffer, image){
         //validate data
@@ -124,6 +123,4 @@ Meteor.methods({
         });
         return listingId;
     },
-
-    //TODO add update method
 });

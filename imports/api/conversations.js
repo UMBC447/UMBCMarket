@@ -33,7 +33,7 @@ Meteor.methods({
             "listingId": listingId
         }).count();
 
-        if (!(count > 0)){
+        if (count <= 0) {
 
             var senderName = Meteor.users.findOne({_id: this.userId}).username;
             
