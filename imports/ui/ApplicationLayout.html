@@ -1,9 +1,9 @@
 <template name="ApplicationLayout">
     <div class="container">
 
-            <header>
-                {{> header }}
-            </header>
+        <header>
+            {{> header }}
+        </header>
         <div class="secondary-container">
             <div class="row">
                 {{> errorDisplay}}
@@ -15,13 +15,13 @@
             <footer>
                 <div class="row">
                     <div class="col-md-3">
-                        <p class="text-center"><button type="button" class="btn btn-link">About UMBC</button></p></div>
+                        <p class="text-center"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#aboutUMBC">About UMBC</button></p></div>
                     <div class="col-md-3">
-                        <p class="text-center"><button type="button" class="btn btn-link">Contact Us</button></p></div>
+                        <p class="text-center"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#contactUs">Contact Us</button></p></div>
                     <div class="col-md-3">
-                        <p class="text-center"><button type="button" class="btn btn-link">Feedback</button></p></div>
+                        <p class="text-center"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#feedback">Feedback</button></p></div>
                     <div class="col-md-3">
-                        <p class="text-center"><button type="button" class="btn btn-link">Conditions of Use</button></p></div>
+                        <p class="text-center"><button type="button" class="btn btn-link" data-toggle="modal" data-target="#conditions">Terms of Use</button></p></div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
@@ -29,6 +29,89 @@
                     </div>
                 </div>
             </footer>
+        </div>
+
+
+        <div id="aboutUMBC" class="modal fade" role="dialog">
+            <div class="modal-dialog ">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">About UMBC</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>The University of Maryland, Baltimore County is an American public research university, located in Baltimore County, Maryland, United States, mostly in the community of Catonsville, approximately 10 minutes from downtown Baltimore City, 9 minutes from Baltimore–Washington International Airport, and 30 minutes from Washington, D.C. With a fall 2014 enrollment of about 14,000 students, over 50 undergraduate majors, over 60 graduate programs, and the first university research park in Maryland. UMBC has been named the #1 Up-and-Coming University for six years in a row, since 2009, by US News & World Report. In addition, US News & World Report has placed UMBC in the top ten for best undergraduate teaching six years in a row, being placed at #5, the second highest-ranked public university.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="contactUs" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Contact Us</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">Some kind of contact form would go here.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="feedback" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center">Feedback</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">Some kind of feedback form would go here</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="conditions" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title text-center">Terms of Use</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">By accessing or using the UMBCMarket website, the UMBCMarket service, or any applications (including mobile applications) made available by UMBCMarket (together, the “Service”), however, accessed, you agree to be bound by these terms of use (“Terms of Use”). The Service is owned or controlled by UMBCMarket, LLC (“UMBCMarket”). These Terms of Use affect your legal rights and obligations. If you do not agree to be bound by all of these Terms of Use, do not access or use the Service.
+
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
     </div>
