@@ -66,16 +66,6 @@ Meteor.methods({
         check(message_text, String);
 
         var senderName = Meteor.users.findOne({_id: this.userId}).username;
-
-        // if (Meteor.isServer) {
-        //     //if the client gave us bad data for the recievers name
-        //     if (Meteor.users.findOne({_id: receiverId}).username != receiverName)
-        //     {
-        //         throw new Meteor.Error("validation-error",
-        //             "You're sending a message to a user that dosen't exist");
-        //     }
-        // }
-
         //confirm user is logged in
         if (!this.userId){
             throw new Meteor.Error("logged-out",
@@ -87,7 +77,7 @@ Meteor.methods({
                 "You can't send a message to yourself");
         }
 
-        var id = Messages.insert({
+        Messages.insert({
             receiverId,
             senderName,
             receiverName,

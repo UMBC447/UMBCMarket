@@ -58,11 +58,12 @@ Template.header.events({
     'submit .search_' (event){
 
         event.preventDefault();
+        if(!(event.target.search_term.value == "")) {
 
-        const target = event.target;
-        const search_key = "/" + target.search_term.value + "/";
+            const search_key = "/" + event.target.search_term.value + "/";
 
-        Router.go('search_results/:_search_key', {_search_key: search_key})
+            Router.go('search_results/:_search_key', {_search_key: search_key})
+        }
     }
 });
 
