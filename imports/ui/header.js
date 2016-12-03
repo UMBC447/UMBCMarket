@@ -52,6 +52,10 @@ Template.header.events({
         event.preventDefault();
         Router.go('new_listing/:_id', {_id: Meteor.userId});
     },
+    'click .admin': function (event) {
+        event.preventDefault();
+        Router.go('admin',);
+    },
     'click #login-buttons-logout': function (event) {
         Router.go('home');
     },

@@ -15,10 +15,17 @@ import '../ui/messages.js';
 import '../ui/header.js';
 import '../ui/errorDisplay.js';
 import '../ui/conversation.js';
+import '../ui/admin.js';
+import '../ui/admin_listings.js';
 import '../ui/ApplicationLayout.html';
+import '../ui/AdminLayout.html';
 
 Router.configure({
     layoutTemplate: 'ApplicationLayout'
+});
+
+Router.configure({
+   layoutTemplate: 'AdminLayout'
 });
 
 Router.route('home', {
@@ -34,6 +41,7 @@ Router.route('home', {
             atProfile: false          
         }
     },
+    layoutTemplate: 'ApplicationLayout',
     template: 'listings'
 });
 
@@ -58,6 +66,7 @@ Router.route('search_results/:_search_key', {
             atProfile: false,
         }
     },
+    layoutTemplate: 'ApplicationLayout',
     template: 'listings'
 });
 
@@ -75,6 +84,7 @@ Router.route('listings/:_userId', {
             atProfile: true      
         }
     },
+    layoutTemplate: 'ApplicationLayout',
     template: 'listings'
 });
 
@@ -86,12 +96,14 @@ Router.route('listing/:_id', {
     data: function() {
         return Listings.findOne({_id: this.params._id});
     },
+    layoutTemplate: 'ApplicationLayout',
     template: 'listing'
 });
 
 Router.route('new_listing/:_id', {
     path: 'new_listing/:_id',
 
+    layoutTemplate: 'ApplicationLayout',
     template: 'new_listing'
 });
 Router.route('edit_listing/:_id', {
@@ -102,6 +114,7 @@ Router.route('edit_listing/:_id', {
     data: function() {
         return Listings.findOne({_id: this.params._id});
     },
+    layoutTemplate: 'ApplicationLayout',
     template: 'edit_listing'
 });
 
@@ -113,6 +126,7 @@ Router.route('profile/:_id', {
     data: function() {
         return Meteor.users.findOne({_id: this.params._id});
     },
+    layoutTemplate: 'ApplicationLayout',
     template: 'profile'
 });
 
@@ -124,6 +138,7 @@ Router.route('new_message/:_id', {
     data: function() {
         return Listings.findOne({_id: this.params._id});
     },
+    layoutTemplate: 'ApplicationLayout',
     template: 'message'
 });
 
@@ -133,6 +148,7 @@ Router.route('messages', {
         return Meteor.subscribe('conversations');
     },
 
+    layoutTemplate: 'ApplicationLayout',
     template: 'messages'
 });
 
@@ -150,5 +166,30 @@ Router.route('conversation/:_id', {
             messages: Messages.find()
         }
     },
+    layoutTemplate: 'ApplicationLayout',
     template: 'conversation'
+});
+
+Router.route('admin', {
+    path: 'admin',
+
+    layoutTemplate: 'AdminLayout',
+    template: 'admin'
+
+});
+Router.route('admin_reports', {
+    path: 'admin_reports',
+
+    waitOn: function () {
+        return Meteor.subscribe('reportedListings');
+    },
+    data: function(){
+        return {
+            listings: Listings.find({ reports: { $gt: 0 }})
+        }
+    },
+
+    layoutTemplate: 'AdminLayout',
+    template: 'admin_listings'
+
 });

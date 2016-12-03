@@ -1,19 +1,21 @@
-<template name="listings" xmlns="http://www.w3.org/1999/html">
+<template name="admin_listings">
+    <header><button type="button" class="btn btn-link link title admin_home">admin home</button></header>
     <div class="space-top"></div>
     <div class = "row">
         <div class = "col-md-1"></div>
         <div class = "col-md-10">
-            {{#if hasListings}}
+
                 {{#each listings}}
                     <div class = "panel panel-default">
                         <div class="panel-heading">
-                            <b><button type="button" class="btn btn-link link title viewListing">{{title}}</button></b>
-                            <button type="button" class="btn btn-link link title report">Report!</button>
+                            <b>Title:</b>{{title}}
+                            <button type="button" class="btn btn-link link title delete">delete</button>
+                            <button type="button" class="btn btn-link link title reset">reset</button>
                         </div>
                         <div class="panel-body">
                             <div class = "row">
                                 <div class="col-md-12">
-                                    <b>Author:</b><button type="button" class="btn-link link viewProfile">{{posterName}}</button>
+                                    <b>Author:</b>{{posterName}}
                                 </div>
                             </div>
                             <div class = "row">
@@ -28,6 +30,11 @@
                             </div>
                             <div class = "row">
                                 <div class="col-md-12">
+                                    <b>Report Count:</b> {{reports}}
+                                </div>
+                            </div>
+                            <div class = "row">
+                                <div class="col-md-12">
                                     <div class="imgContainer thumb">
                                         <img src={{image}} class="img-responsive">
                                     </div>
@@ -36,17 +43,6 @@
                         </div>
                     </div>
                 {{/each}}
-            {{else}}
-                {{#if atMainMenu}}
-                    <div class="alert alert-warning center-text" role="alert" ><b>No listings yet. Try logging in and posting one!</b></div>
-                {{/if}}
-                {{#if atSearch}}
-                    <div class="alert alert-warning center-text" role="alert"><b>No results for your search query.</b></div>
-                {{/if}}
-                {{#if atProfile}}
-                    <div class="alert alert-warning center-text" role="alert"><b>This user has not posted any listings yet.</b></div>
-                {{/if}}
-            {{/if}}
         </div>
         <div class = "col-md-1"></div>
     </div>

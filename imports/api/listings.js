@@ -33,6 +33,10 @@ if (Meteor.isServer){
                 });
         }
     );
+    Meteor.publish('reportedListings', function listingPublication(){
+        var res = Listings.find({ reports: { $gt: 0 }});
+        return res;
+    })
 }
 
 Meteor.methods({
@@ -70,7 +74,8 @@ Meteor.methods({
             date: new Date(),
             ownerId: this.userId,
             closed: false,
-            posterName: Meteor.users.findOne(this.userId).username
+            posterName: Meteor.users.findOne(this.userId).username,
+            reports: 0
 
         });
 
@@ -122,5 +127,21 @@ Meteor.methods({
             }
         });
         return listingId;
+    },
+    'listings.report'(listingId){
+        check(listingId, String);
+        const listing = Listings.findOne(listingId);
+        var count = Number(listing.reports) + 1
+        console.log(count);
+        Listings.update(listingId, {
+            $set: { reports: count }
+        });
+    },
+    'listings.reset'(listingId){
+        check(listingId, String);
+        const listing = Listings.findOne(listingId);
+        Listings.update(listingId, {
+            $set: { reports: 0 }
+        });
     },
 });
