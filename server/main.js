@@ -13,6 +13,11 @@ Meteor.startup(() => {
     });
 
     Accounts.onCreateUser(function (options, user) {
+        console.log(user);
+        console.log(options);
+        if (user.username == "marketadmin"){
+            user.admin = true;
+        }
         user.averageRating = 0; //maybe unused
         user.ratings = 0;   //maybe unused
         if (options.profile)

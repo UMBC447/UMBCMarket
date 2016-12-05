@@ -37,5 +37,13 @@ Template.listing.events({
     'click .edit': function () {
         Router.go('edit_listing/:_id', {_id:this._id});
     },
+    'click .report': function () {
+    Meteor.call('listings.report', this._id, function(error){
+        if (!error){
+            alert("Listing successfully reported");
+        }
+
+    });
+}
 
 });

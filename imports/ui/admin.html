@@ -1,5 +1,7 @@
 <template name="admin">
     <header>Admin Home</header>
-    <button type="button" class="btn btn-link link title reports">reported listings</button>
-    <button type="button" class="btn btn-link link title clean">clean up</button>
+    {{#if isAdmin}}
+        <button type="button" class="btn btn-link link title reports">reported listings</button>
+        <button type="button" class="btn btn-link link title clean">clean up</button>
+    {{/if}}
 </template>

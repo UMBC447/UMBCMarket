@@ -73,7 +73,6 @@ Meteor.methods({
             description: description,
             startingOffer: startingOffer,
             image: image,
-            date: new Date(),
             ownerId: this.userId,
             closed: false,
             posterName: Meteor.users.findOne(this.userId).username,
@@ -107,12 +106,14 @@ Meteor.methods({
         check(listingId, String);
         const listing = Listings.findOne(listingId);
 
-        if (listing.ownerId !== this.userId){
-            //confirm user is logged in
+        if (listing.ownerId == this.userId || Meteor.user().admin){
+            Listings.remove({_id: listingId});
+        }
+        else
+        {
             throw new Meteor.Error("not-authorized",
                 "You must be the owner of this listing to delete it");
         }
-        Listings.remove({_id: listingId});
     },
     'listings.edit'(listingId, title, description, startingOffer){
         check(listingId, String);
@@ -138,7 +139,7 @@ Meteor.methods({
     'listings.report'(listingId){
         check(listingId, String);
         const listing = Listings.findOne(listingId);
-        var count = Number(listing.reports) + 1
+        var count = Number(listing.reports) + 1;
         Listings.update(listingId, {
             $set: { reports: count }
         });
@@ -146,28 +147,41 @@ Meteor.methods({
     'listings.reset'(listingId){
         check(listingId, String);
         const listing = Listings.findOne(listingId);
-        Listings.update(listingId, {
-            $set: { reports: 0 }
-        });
+        if (Meteor.user().admin){
+            Listings.update(listingId, {
+                $set: { reports: 0 }
+            });
+        }
+        else
+        {
+            throw new Meteor.Error("not-authorized",
+                "You must be an admin to reset reports on a listing");
+        }
     },
     'listings.clean'(){
         var time_check = Date.now() - (40 * 24 * 60 * 60 * 1000);
 
+        if (Meteor.user().admin){
+            Listings.find({ expire: { $lt: time_check }}).forEach(function(l){
+                if(!(l.closed)) {
+                    Messages.remove({listingId: l._id});
+                    Conversations.remove({listingId: l._id});
+                    Listings.remove({_id: l._id});
+                }
+                else {
 
-        Listings.find({ expire: { $lt: time_check }}).forEach(function(l){
-            if(!(l.closed)) {
-                Messages.remove({listingId: l._id});
-                Conversations.remove({listingId: l._id});
-                Listings.remove({_id: l._id});
-            }
-            else {
+                    Listings.update(l._id, {
+                        $set: { closed: false,
+                            expire: Date.now()
+                        }});
+                }
 
-                Listings.update(l._id, {
-                    $set: { closed: false,
-                        expire: Date.now()
-                    }});
-            }
-
-        });
+            });
+        }
+        else
+        {
+            throw new Meteor.Error("not-authorized",
+                "You must be an admin to clean the database");
+        }
     },
 });

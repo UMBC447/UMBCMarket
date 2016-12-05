@@ -1,49 +1,50 @@
 <template name="admin_listings">
     <header><button type="button" class="btn btn-link link title admin_home">admin home</button></header>
     <div class="space-top"></div>
-    <div class = "row">
-        <div class = "col-md-1"></div>
-        <div class = "col-md-10">
-
-                {{#each listings}}
-                    <div class = "panel panel-default">
-                        <div class="panel-heading">
-                            <b>Title:</b>{{title}}
-                            <button type="button" class="btn btn-link link title delete">delete</button>
-                            <button type="button" class="btn btn-link link title reset">reset</button>
-                        </div>
-                        <div class="panel-body">
-                            <div class = "row">
-                                <div class="col-md-12">
-                                    <b>Author:</b>{{posterName}}
-                                </div>
+    {{#if isAdmin}}
+        <div class = "row">
+            <div class = "col-md-1"></div>
+            <div class = "col-md-10">
+                    {{#each listings}}
+                        <div class = "panel panel-default">
+                            <div class="panel-heading">
+                                <b>Title:</b>{{title}}
+                                <button type="button" class="btn btn-link link title delete">delete</button>
+                                <button type="button" class="btn btn-link link title reset">reset</button>
                             </div>
-                            <div class = "row">
-                                <div class="col-md-12">
-                                    <b>Description:</b> {{description}}
+                            <div class="panel-body">
+                                <div class = "row">
+                                    <div class="col-md-12">
+                                        <b>Author:</b>{{posterName}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class = "row">
-                                <div class="col-md-12">
-                                    <b>Date:</b> {{date}}
+                                <div class = "row">
+                                    <div class="col-md-12">
+                                        <b>Description:</b> {{description}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class = "row">
-                                <div class="col-md-12">
-                                    <b>Report Count:</b> {{reports}}
+                                <div class = "row">
+                                    <div class="col-md-12">
+                                        <b>Date:</b> {{date}}
+                                    </div>
                                 </div>
-                            </div>
-                            <div class = "row">
-                                <div class="col-md-12">
-                                    <div class="imgContainer thumb">
-                                        <img src={{image}} class="img-responsive">
+                                <div class = "row">
+                                    <div class="col-md-12">
+                                        <b>Report Count:</b> {{reports}}
+                                    </div>
+                                </div>
+                                <div class = "row">
+                                    <div class="col-md-12">
+                                        <div class="imgContainer thumb">
+                                            <img src={{image}} class="img-responsive">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {{/each}}
+                    {{/each}}
+            </div>
+            <div class = "col-md-1"></div>
         </div>
-        <div class = "col-md-1"></div>
-    </div>
+    {{/if}}
 </template>
