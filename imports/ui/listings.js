@@ -7,7 +7,10 @@ import './listings';
 Template.listings.helpers({
    hasListings(){
        return (this.listings.count() > 0);
-   }
+   },
+    formatDate(date){
+        return date.toDateString();
+    }
 });
 
 Template.listings.events({

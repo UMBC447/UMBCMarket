@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
+import { Messages } from './messages.js'
+import { Conversations } from './conversations.js'
 
 export const Listings = new Mongo.Collection('Listings');
 
@@ -137,7 +139,6 @@ Meteor.methods({
         check(listingId, String);
         const listing = Listings.findOne(listingId);
         var count = Number(listing.reports) + 1
-        console.log(count);
         Listings.update(listingId, {
             $set: { reports: count }
         });
@@ -155,7 +156,8 @@ Meteor.methods({
 
         Listings.find({ expire: { $lt: time_check }}).forEach(function(l){
             if(!(l.closed)) {
-
+                Messages.remove({listingId: l._id});
+                Conversations.remove({listingId: l._id});
                 Listings.remove({_id: l._id});
             }
             else {

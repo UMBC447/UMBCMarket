@@ -35,6 +35,9 @@ Template.conversation.helpers({
         else {
             return 0;
         }
+    },
+    formatDate(date){
+        return date.toDateString();
     }
 });
 

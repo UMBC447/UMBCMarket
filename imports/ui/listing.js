@@ -12,6 +12,9 @@ Template.listing.helpers({
    },
     isClosed() {
         return this.closed;
+    },
+    formatDate(date){
+       return date.toDateString();
     }
 });
 

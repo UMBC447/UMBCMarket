@@ -36,6 +36,11 @@ Template.header.helpers({
 });
 
 Template.header.events({
+    /* TODO: Convert to on-admin-login
+    'click .admin': function (event) {
+        event.preventDefault();
+        Router.go('admin',);
+    }, */
 
     'click .home': function () {
         Router.go('home');
@@ -51,10 +56,6 @@ Template.header.events({
     'click .new_listing': function (event) {
         event.preventDefault();
         Router.go('new_listing/:_id', {_id: Meteor.userId});
-    },
-    'click .admin': function (event) {
-        event.preventDefault();
-        Router.go('admin',);
     },
     'click #login-buttons-logout': function (event) {
         Router.go('home');
