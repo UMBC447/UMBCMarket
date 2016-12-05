@@ -15,14 +15,7 @@ Template.admin.events({
         Router.go('admin_reports');
     },
     'click .clean': function () {
-        /*TODO: Decide on and implement clean up functionality
-        *   - Remove listings and associated messages for those closed for more than 30 days?
-        *   - Set Listings posted for at least 30 days to closed?
-        *       - will require a closed/open date field in DB
-        *
-        *   The above proposal will remove old inactive listings and reward active users
-        *   who continue to update and re-open listings.
-        *       */
+        Meteor.call('listings.clean', function(){});
     },
 
 });

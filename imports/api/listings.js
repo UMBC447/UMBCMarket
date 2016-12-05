@@ -75,7 +75,8 @@ Meteor.methods({
             ownerId: this.userId,
             closed: false,
             posterName: Meteor.users.findOne(this.userId).username,
-            reports: 0
+            reports: 0,
+            expire: Date.now()
 
         });
 
@@ -95,7 +96,10 @@ Meteor.methods({
                     "You must be the owner of this listing to update it");
         }
 
-        Listings.update(listingId, {$set: {closed: setClosed}});
+        Listings.update(listingId, {
+            $set: { closed: setClosed,
+                    expire: Date.now()
+            }});
     },
     'listings.delete'(listingId){
         check(listingId, String);
@@ -123,7 +127,8 @@ Meteor.methods({
         Listings.update(listingId, {
             $set: { title: title,
                     description: description,
-                    startingOffer: startingOffer
+                    startingOffer: startingOffer,
+                    expire: Date.now()
             }
         });
         return listingId;
@@ -142,6 +147,25 @@ Meteor.methods({
         const listing = Listings.findOne(listingId);
         Listings.update(listingId, {
             $set: { reports: 0 }
+        });
+    },
+    'listings.clean'(){
+        var time_check = Date.now() - (40 * 24 * 60 * 60 * 1000);
+
+
+        Listings.find({ expire: { $lt: time_check }}).forEach(function(l){
+            if(!(l.closed)) {
+
+                Listings.remove({_id: l._id});
+            }
+            else {
+
+                Listings.update(l._id, {
+                    $set: { closed: false,
+                        expire: Date.now()
+                    }});
+            }
+
         });
     },
 });
