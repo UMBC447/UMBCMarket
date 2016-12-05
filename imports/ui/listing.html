@@ -27,10 +27,13 @@
                 <div class = "panel panel-default">
                     <div class="panel-heading">
                         <b class="panel-title pull-left">{{title}}</b>
-                        <button class="report btn btn-sm btn-default pull-right">Report</button>
                         {{#if isOwner}}
                             <button class="delete btn btn-sm btn-default pull-right">Delete</button>
                             <button class="edit btn btn-sm btn-default pull-right">Edit</button>
+                        {{else}}
+                            <button class="report btn btn-sm btn-default pull-right">Report</button>
+
+                            <button class = "sendMessage btn btn-sm btn-default pull-right">Message</button>
                         {{/if}}
                         <div class="clearfix"></div>
                     </div>
@@ -38,15 +41,7 @@
                         <div class = "row">
 							<div class="col-md-9">
                             <b>Author:</b><button type="button" class="btn-link link viewProfile">{{posterName}}</button>
-							{{#if currentUser}}
-								{{#if isOwner}}
-								{{else}}
-									<button class = "sendMessage btn btn-link">[msg]</button>
-								{{/if}}
-							{{/if}}
 							</div>
-							
-							
 						</div>
 						<div class = "row">
 							<div class="col-md-12">
