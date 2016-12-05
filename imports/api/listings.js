@@ -72,13 +72,13 @@ Meteor.methods({
             title: title,
             description: description,
             startingOffer: startingOffer,
+            date: new Date(),
             image: image,
             ownerId: this.userId,
             closed: false,
             posterName: Meteor.users.findOne(this.userId).username,
             reports: 0,
             expire: Date.now()
-
         });
 
         return listingId;
