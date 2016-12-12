@@ -13,6 +13,9 @@ Template.admin.helpers({
 });
 
 Template.admin.events({
+    'click .home': function () {
+        Router.go('home');
+    },
     'click .reports': function () {
         Router.go('admin_reports');
     },

@@ -11,7 +11,7 @@ Template.listing.helpers({
        return this.ownerId == Meteor.userId();
    },
     isClosed() {
-        return this.closed;
+        return !this.closed;
     },
     formatDate(date){
        return date.toDateString();
